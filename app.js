@@ -105,7 +105,12 @@ const S = {
     colVol: "Volunteers", colCheck: "Checklist", colStatus: "Status", published2: "Published",
     team: "Members", manage: "Manage members", rOwner: "Owner", rAdmins: "Admins", rMembers: "Members",
     rWaiting: "Waiting", rRemoved: "Removed", festNext: "Next festival", festNone: "No festivals coming up.",
-    viewCal: "View calendar"
+    viewCal: "View calendar",
+    evTable: "Events", searchEvents: "Search events or venues", searchAtt: "Search", filterBy: "Filter",
+    showing: "{a}–{b} of {n}", pageN: "Page {a} of {b}", prevPage: "Previous page", nextPage: "Next page",
+    fAll: "All", fPeople: "Approvals", fVol: "Volunteers", fCheck: "Checklists", fDate: "Dates", fDraft: "Drafts",
+    showWhen: "Which dates", wUpcoming: "Upcoming", wPast: "Past", wAll: "All dates", sAll: "Any status",
+    sortBy: "Sort by", noMatch: "Nothing matches your search or filters.", clearFilters: "Clear filters"
   },
   ta: {
     org: "GATS நிகழ்வுகள்", orgAlt: "கிரேட்டர் அட்லாண்டா தமிழ்ச் சங்கம்",
@@ -202,7 +207,12 @@ const S = {
     colVol: "தன்னார்வலர்கள்", colCheck: "பணிகள்", colStatus: "நிலை", published2: "வெளியிடப்பட்டது",
     team: "உறுப்பினர்கள்", manage: "உறுப்பினர்களை நிர்வகி", rOwner: "உரிமையாளர்", rAdmins: "நிர்வாகிகள்", rMembers: "உறுப்பினர்கள்",
     rWaiting: "காத்திருப்பவர்கள்", rRemoved: "நீக்கப்பட்டவர்கள்", festNext: "அடுத்த பண்டிகை", festNone: "வரவிருக்கும் பண்டிகைகள் இல்லை.",
-    viewCal: "நாட்காட்டியைப் பார்"
+    viewCal: "நாட்காட்டியைப் பார்",
+    evTable: "நிகழ்வுகள்", searchEvents: "நிகழ்வு அல்லது இடத்தைத் தேடு", searchAtt: "தேடு", filterBy: "வடிகட்டு",
+    showing: "{n}-இல் {a}–{b}", pageN: "பக்கம் {a} / {b}", prevPage: "முந்தைய பக்கம்", nextPage: "அடுத்த பக்கம்",
+    fAll: "அனைத்தும்", fPeople: "அனுமதிகள்", fVol: "தன்னார்வலர்கள்", fCheck: "பணிப் பட்டியல்கள்", fDate: "தேதிகள்", fDraft: "வரைவுகள்",
+    showWhen: "எந்தத் தேதிகள்", wUpcoming: "வரவிருப்பவை", wPast: "முடிந்தவை", wAll: "அனைத்துத் தேதிகளும்", sAll: "எந்த நிலையும்",
+    sortBy: "வரிசைப்படுத்து", noMatch: "உங்கள் தேடலுக்கு எதுவும் பொருந்தவில்லை.", clearFilters: "வடிகட்டிகளை நீக்கு"
   }
 };
 const CATS = ["celebration", "cultural", "school", "sports", "meeting", "volunteer", "festival", "other"];
@@ -513,6 +523,7 @@ const ICONS = {
   heart: '<path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z"/>',
   draft: '<path d="M4 20h4L19.5 8.5l-4-4L4 16z"/>',
   star: '<path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"/>',
+  search: '<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>',
   mail: '<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/>',
   ticket: '<path d="M3 8a2 2 0 0 0 0 4v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 1 0-4V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z"/><path d="M14 4v16"/>'
 };
@@ -537,6 +548,9 @@ function nameControls(root) {
 function render() {
   document.documentElement.lang = st.lang === "ta" ? "ta" : "en";
   const app = $("#app");
+  // Keep focus (and the caret in a search box) across re-renders.
+  const ae = document.activeElement, fid = ae && ae.id && app.contains(ae) ? ae.id : null;
+  const caret = fid && typeof ae.selectionStart === "number" ? [ae.selectionStart, ae.selectionEnd] : null;
   if (st.screen === "setup") app.innerHTML = setupHTML();
   else if (st.screen === "loading") app.innerHTML = `<p class="boot">${esc(t("loading"))}</p>`;
   else if (st.screen === "auth") app.innerHTML = authHTML();
@@ -544,6 +558,7 @@ function render() {
   else if (st.screen === "blocked") app.innerHTML = gateHTML(t("blockedTitle"), t("blockedBody") + (CFG.contactEmail ? " " + CFG.contactEmail : ""), false);
   else app.innerHTML = appHTML();
   nameControls(app);
+  if (fid) { const n = document.getElementById(fid); if (n && !n.disabled) { n.focus({ preventScroll: true }); if (caret && n.setSelectionRange) try { n.setSelectionRange(caret[0], caret[1]); } catch (e) {} } }
 }
 
 function setupHTML() {
@@ -723,25 +738,105 @@ function attentionItems(S) {
   }
   return out;
 }
-function upTableHTML(S) {
-  const rows = S.future.slice(0, 12);
-  if (!rows.length) return `<p class="hint">${esc(t("noEventsAdmin"))}</p>`;
-  const cols = ["colDate", "colEvent", "colGoing", "colMaybe", "colVol", "colCheck", "colStatus"];
-  return `<div class="table-wrap"><table class="dt"><thead><tr>${cols.map((k) => `<th scope="col">${esc(t(k))}</th>`).join("")}</tr></thead><tbody>
-    ${rows.map((e) => {
-      const c = counts(e.id), sl = slotsOf(e), p = planOf(e.id), d = p.filter((i) => i.done).length;
+/* ---------- dashboard grids: search, filters, sorting and paging ---------- */
+st.grid = {
+  att: { q: "", page: 0, kind: "all" },
+  ev: { q: "", page: 0, sort: "date", dir: 1, when: "upcoming", status: "all" }
+};
+const PAGE_SIZE = { att: 5, ev: 6 };
+const norm = (s) => String(s || "").toLowerCase();
+function pageOf(list, key) {
+  const g = st.grid[key], size = PAGE_SIZE[key], pages = Math.max(1, Math.ceil(list.length / size));
+  if (g.page > pages - 1) g.page = pages - 1;
+  if (g.page < 0) g.page = 0;
+  const start = g.page * size;
+  return { rows: list.slice(start, start + size), pages, start, end: Math.min(start + size, list.length), total: list.length, page: g.page };
+}
+function pagerHTML(key, p) {
+  if (!p.total) return "";
+  return `<div class="pager">
+    <span class="pg-info" aria-live="polite">${esc(t("showing", { a: p.start + 1, b: p.end, n: p.total }))}</span>
+    <div class="pg-btns">
+      <button class="btn sm" type="button" id="pg-${key}-prev" data-pg="${key}" data-d="-1" aria-label="${esc(t("prevPage"))}" ${p.page === 0 ? "disabled" : ""}>‹</button>
+      <span class="pg-n">${esc(t("pageN", { a: p.page + 1, b: p.pages }))}</span>
+      <button class="btn sm" type="button" id="pg-${key}-next" data-pg="${key}" data-d="1" aria-label="${esc(t("nextPage"))}" ${p.page >= p.pages - 1 ? "disabled" : ""}>›</button>
+    </div></div>`;
+}
+const searchBox = (key, ph) => `<label class="grid-search">${ic("search")}<input id="q-${key}" type="search" data-grid-q="${key}" value="${esc(st.grid[key].q)}" placeholder="${esc(ph)}" aria-label="${esc(ph)}" autocomplete="off"></label>`;
+const noMatchHTML = (key) => `<div class="no-match"><p>${esc(t("noMatch"))}</p><button class="btn sm" type="button" id="clr-${key}" data-grid-clear="${key}">${esc(t("clearFilters"))}</button></div>`;
+
+/* Needs attention */
+const ATT_KIND = { users: "people", heart: "vol", list: "check", draft: "draft", clock: "date" };
+function attentionHTML(att) {
+  const g = st.grid.att;
+  const items = att.map((a) => ({ ...a, kind: ATT_KIND[a.icon] || "other" }));
+  const kinds = [["all", "fAll"], ["people", "fPeople"], ["vol", "fVol"], ["check", "fCheck"], ["date", "fDate"], ["draft", "fDraft"]]
+    .map(([k, l]) => ({ k, l, n: k === "all" ? items.length : items.filter((i) => i.kind === k).length }))
+    .filter((c) => c.k === "all" || c.n);
+  if (g.kind !== "all" && !kinds.some((c) => c.k === g.kind)) g.kind = "all";
+  const q = norm(g.q);
+  const list = items.filter((i) => (g.kind === "all" || i.kind === g.kind) && (!q || norm(i.text + " " + (i.sub || "")).includes(q)));
+  const p = pageOf(list, "att");
+  const head = `<div class="card-head"><h2 id="attH">${esc(t("attention"))}</h2>${att.length ? `<span class="badge">${att.length}</span>` : ""}</div>`;
+  if (!att.length) return `<section class="card" aria-labelledby="attH">${head}<p class="all-clear">${ic("check")}<span>${esc(t("allClear"))}</span></p></section>`;
+  return `<section class="card grid-card" aria-labelledby="attH">${head}
+    <div class="grid-tools">${searchBox("att", t("searchAtt"))}</div>
+    <div class="fchips" role="group" aria-label="${esc(t("filterBy"))}">${kinds.map((c) =>
+      `<button type="button" id="chip-${c.k}" data-att-kind="${c.k}" aria-pressed="${g.kind === c.k}">${esc(t(c.l))}<span>${c.n}</span></button>`).join("")}</div>
+    ${p.total ? `<ul class="attn">${p.rows.map((a) => `<li class="${a.tone || ""}"><span class="attn-ic">${ic(a.icon)}</span>
+      <span class="attn-t">${esc(a.text)}${a.sub ? `<span class="sub">${esc(a.sub)}</span>` : ""}</span>
+      <button class="btn sm" type="button" ${a.act} aria-label="${esc(a.label + ": " + a.text)}">${esc(a.label)}</button></li>`).join("")}</ul>` : noMatchHTML("att")}
+    ${pagerHTML("att", p)}</section>`;
+}
+
+/* Events grid */
+const DESC_FIRST = ["going", "maybe", "vol", "check"];
+function eventRows() {
+  const g = st.grid.ev, today = todayS(), q = norm(g.q);
+  const rows = allItems().filter((e) => !isFest(e))
+    .filter((e) => g.when === "all" || (g.when === "past" ? e.date < today : e.date >= today))
+    .map((e) => {
+      const c = counts(e.id), sl = slotsOf(e), p = planOf(e.id), done = p.filter((i) => i.done).length;
       const need = sl.reduce((n, s) => n + Math.max(1, Number(s.need) || 1), 0);
       const fill = sl.reduce((n, s) => n + Math.min(Math.max(1, Number(s.need) || 1), slotPeople(e.id, s.id).length), 0);
-      const status = e._draft ? `<span class="tag draft">${esc(t("draft"))}</span>` : e.tentative ? `<span class="tag">${esc(t("tbc"))}</span>` : `<span class="tag ok">${esc(t("published2"))}</span>`;
-      return `<tr>
-        <td data-label="${esc(t("colDate"))}"><b>${esc(fmt(e.date, { month: "short", day: "numeric" }))}</b><span class="sub">${esc(when(e.date))}</span></td>
-        <th scope="row" data-label="${esc(t("colEvent"))}"><button type="button" class="ev-link" data-open="${esc(e.id)}">${esc(title(e))}</button><span class="sub">${esc(timeRange(e))}${e.venue ? " · " + esc(e.venue) : ""}</span></th>
-        <td class="num" data-label="${esc(t("colGoing"))}">${e._draft ? "–" : c.going}</td>
-        <td class="num" data-label="${esc(t("colMaybe"))}">${e._draft ? "–" : c.maybe}</td>
-        <td data-label="${esc(t("colVol"))}">${need ? `<span class="mini">${fill}/${need}${meter(pctOf(fill, need), t("filled", { a: fill, b: need }))}</span>` : "–"}</td>
-        <td data-label="${esc(t("colCheck"))}">${p.length ? `<span class="mini">${d}/${p.length}${meter(pctOf(d, p.length), t("clProgress", { a: d, b: p.length }))}</span>` : "–"}</td>
-        <td data-label="${esc(t("colStatus"))}">${status}</td></tr>`;
-    }).join("")}</tbody></table></div>`;
+      const status = e._draft ? "draft" : e.tentative ? "tbc" : "published";
+      return { e, going: e._draft ? -1 : c.going, maybe: e._draft ? -1 : c.maybe, need, fill, vol: need ? fill / need : -1, tasks: p.length, done, check: p.length ? done / p.length : -1, status };
+    })
+    .filter((r) => g.status === "all" || r.status === g.status)
+    .filter((r) => !q || norm([r.e.title, r.e.titleTa, r.e.venue, t("cat")[r.e.category]].join(" ")).includes(q));
+  const key = { date: (r) => r.e.date + (r.e.start || ""), title: (r) => norm(title(r.e)), going: (r) => r.going, maybe: (r) => r.maybe, vol: (r) => r.vol, check: (r) => r.check, status: (r) => r.status }[g.sort] || ((r) => r.e.date);
+  rows.sort((a, b) => { const x = key(a), y = key(b); return (x < y ? -1 : x > y ? 1 : 0) * g.dir || (a.e.date < b.e.date ? -1 : 1); });
+  return rows;
+}
+function eventsGridHTML() {
+  const g = st.grid.ev, rows = eventRows(), p = pageOf(rows, "ev");
+  const cols = [["date", "colDate"], ["title", "colEvent"], ["going", "colGoing", "num"], ["maybe", "colMaybe", "num"], ["vol", "colVol"], ["check", "colCheck"], ["status", "colStatus"]];
+  const th = ([k, l, cls]) => {
+    const on = g.sort === k, sort = on ? (g.dir > 0 ? "ascending" : "descending") : "none";
+    return `<th scope="col" aria-sort="${sort}"${cls ? ` class="${cls}"` : ""}><button type="button" class="th-sort${on ? " on" : ""}" id="sort-${k}" data-sort="${k}">${esc(t(l))}<span class="arr" aria-hidden="true">${on ? (g.dir > 0 ? "▲" : "▼") : "↕"}</span></button></th>`;
+  };
+  const statusTag = (s) => s === "draft" ? `<span class="tag draft">${esc(t("draft"))}</span>` : s === "tbc" ? `<span class="tag">${esc(t("tbc"))}</span>` : `<span class="tag ok">${esc(t("published2"))}</span>`;
+  const opt = (v, cur, l) => `<option value="${v}"${v === cur ? " selected" : ""}>${esc(l)}</option>`;
+  const body = p.rows.map((r) => {
+    const e = r.e;
+    return `<tr>
+      <td data-label="${esc(t("colDate"))}"><b>${esc(fmt(e.date, { month: "short", day: "numeric" }))}</b><span class="sub">${esc(e.date >= todayS() ? when(e.date) : fmt(e.date, { year: "numeric" }))}</span></td>
+      <th scope="row" data-label="${esc(t("colEvent"))}"><button type="button" class="ev-link" data-open="${esc(e.id)}">${esc(title(e))}</button><span class="sub">${esc(timeRange(e))}${e.venue ? " · " + esc(e.venue) : ""}</span></th>
+      <td class="num" data-label="${esc(t("colGoing"))}">${r.going < 0 ? "–" : r.going}</td>
+      <td class="num" data-label="${esc(t("colMaybe"))}">${r.maybe < 0 ? "–" : r.maybe}</td>
+      <td data-label="${esc(t("colVol"))}">${r.need ? `<span class="mini">${r.fill}/${r.need}${meter(pctOf(r.fill, r.need), t("filled", { a: r.fill, b: r.need }))}</span>` : "–"}</td>
+      <td data-label="${esc(t("colCheck"))}">${r.tasks ? `<span class="mini">${r.done}/${r.tasks}${meter(pctOf(r.done, r.tasks), t("clProgress", { a: r.done, b: r.tasks }))}</span>` : "–"}</td>
+      <td data-label="${esc(t("colStatus"))}">${statusTag(r.status)}</td></tr>`;
+  }).join("");
+  return `<section class="card grid-card" aria-labelledby="evH">
+    <div class="card-head"><h2 id="evH">${esc(t("evTable"))}</h2><span class="badge">${rows.length}</span><a class="btn sm" href="#events">${ic("calendar")}${esc(t("viewCal"))}</a></div>
+    <div class="grid-tools">${searchBox("ev", t("searchEvents"))}
+      <select id="sel-when" data-grid-sel="when" aria-label="${esc(t("showWhen"))}">${opt("upcoming", g.when, t("wUpcoming"))}${opt("past", g.when, t("wPast"))}${opt("all", g.when, t("wAll"))}</select>
+      <select id="sel-status" data-grid-sel="status" aria-label="${esc(t("colStatus"))}">${opt("all", g.status, t("sAll"))}${opt("published", g.status, t("published2"))}${opt("tbc", g.status, t("tbc"))}${opt("draft", g.status, t("draft"))}</select>
+      <select id="sel-sort" class="m-only" data-grid-sel="sort" aria-label="${esc(t("sortBy"))}">${cols.map(([k, l]) => opt(k, g.sort, t("sortBy") + ": " + t(l))).join("")}</select>
+    </div>
+    ${p.total ? `<div class="table-wrap"><table class="dt"><thead><tr>${cols.map(th).join("")}</tr></thead><tbody>${body}</tbody></table></div>` : noMatchHTML("ev")}
+    ${pagerHTML("ev", p)}</section>`;
 }
 function dashboardHTML() {
   const S = dashStats(), att = attentionItems(S), fest = allItems().find((e) => e.date >= todayS() && isFest(e));
@@ -758,12 +853,7 @@ function dashboardHTML() {
   return `<div class="page-head"><h1 id="pageTitle">${esc(t("dashTitle"))}</h1><p class="hint">${esc(t("dashSub"))}</p></div>
     <div class="stats">${stats.map(statCard).join("")}</div>
     <div class="dash-grid">
-      <section class="card" aria-labelledby="attH"><div class="card-head"><h2 id="attH">${esc(t("attention"))}</h2>${att.length ? `<span class="badge">${att.length}</span>` : ""}</div>
-        ${att.length ? `<ul class="attn">${att.slice(0, 10).map((a) => `<li class="${a.tone || ""}"><span class="attn-ic">${ic(a.icon)}</span>
-          <span class="attn-t">${esc(a.text)}${a.sub ? `<span class="sub">${esc(a.sub)}</span>` : ""}</span>
-          <button class="btn sm" type="button" ${a.act} aria-label="${esc(a.label + ": " + a.text)}">${esc(a.label)}</button></li>`).join("")}</ul>`
-          : `<p class="all-clear">${ic("check")}<span>${esc(t("allClear"))}</span></p>`}
-      </section>
+      ${attentionHTML(att)}
       <div class="side">
         <section class="card" aria-labelledby="teamH"><div class="card-head"><h2 id="teamH">${esc(t("team"))}</h2><button class="btn sm" type="button" data-members>${esc(t("manage"))}</button></div>
           <dl class="kv">${roles.map(([k, n]) => `<div${k === "rWaiting" && n ? ' class="hot"' : ""}><dt>${esc(t(k))}</dt><dd>${n}</dd></div>`).join("")}</dl></section>
@@ -772,7 +862,7 @@ function dashboardHTML() {
             : `<p class="hint">${esc(t("festNone"))}</p>`}</section>
       </div>
     </div>
-    <section class="card" aria-labelledby="upTH"><div class="card-head"><h2 id="upTH">${esc(t("upTable"))}</h2><a class="btn sm" href="#events">${ic("calendar")}${esc(t("viewCal"))}</a></div>${upTableHTML(S)}</section>`;
+    ${eventsGridHTML()}`;
 }
 
 /* ================= events view (everyone) ================= */
@@ -1200,6 +1290,10 @@ document.addEventListener("click", (ev) => {
   if (D.setrole) { setRole(D.setrole, D.r, b); return; }
   if (D.plan !== undefined) { openForm(null, st.sel >= todayS() ? st.sel : todayS()); return; }
   if (D.goto) { location.hash = D.goto; return; }
+  if (D.pg) { st.grid[D.pg].page += Number(D.d); render(); return; }
+  if (D.sort) { const g = st.grid.ev; if (g.sort === D.sort) g.dir *= -1; else { g.sort = D.sort; g.dir = DESC_FIRST.includes(D.sort) ? -1 : 1; } g.page = 0; render(); return; }
+  if (D.attKind) { st.grid.att.kind = D.attKind; st.grid.att.page = 0; render(); return; }
+  if (D.gridClear) { const g = st.grid[D.gridClear]; g.q = ""; g.page = 0; if (D.gridClear === "att") g.kind = "all"; else { g.status = "all"; g.when = "upcoming"; } render(); return; }
   if (D.open) { openDetail(D.open); if (D.goTab) { st.tab = D.goTab; openDetail(D.open); } return; }
   if (D.new !== undefined) { openForm(null, D.new || todayS(), D.prefill); return; }
   if (D.edit) { openForm(D.edit, null, null, D.focusSlots !== undefined); return; }
@@ -1225,6 +1319,7 @@ document.addEventListener("click", (ev) => {
 });
 document.addEventListener("change", (ev) => {
   const el = ev.target;
+  if (el.dataset.gridSel) { const g = st.grid.ev, f = el.dataset.gridSel; if (f === "sort") { g.sort = el.value; g.dir = DESC_FIRST.includes(el.value) ? -1 : 1; } else g[f] = el.value; g.page = 0; render(); return; }
   if (el.dataset.tick) tickTask(el.dataset.tick, el.checked);
 });
 document.addEventListener("submit", (ev) => {
@@ -1237,10 +1332,12 @@ document.addEventListener("submit", (ev) => {
 });
 document.addEventListener("input", (ev) => {
   const el = ev.target;
+  if (el.dataset.gridQ) { const g = st.grid[el.dataset.gridQ]; g.q = el.value; g.page = 0; if (!ev.isComposing) render(); return; }
   if (el.dataset.sname !== undefined) { st.form.slots[Number(el.dataset.sname)].name = el.value; return; }
   if (el.dataset.sneed !== undefined) { st.form.slots[Number(el.dataset.sneed)].need = Number(el.value) || 1; return; }
   if (el.id === "guestN" && st.openId) setGuests(st.openId, Math.max(0, Math.min(20, Number(el.value) || 0)));
 });
+document.addEventListener("compositionend", (ev) => { if (ev.target.dataset?.gridQ) render(); });
 document.addEventListener("keydown", (ev) => { if (ev.key === "Escape" && st.menuOpen) { st.menuOpen = false; render(); } });
 // The browser can deliver "close" late; if something was reopened meanwhile, keep its state.
 dlg.addEventListener("close", () => { if (dlg.open) return; st.openId = null; st.form = null; st.confirmDel = false; st.dlgMode = null; });
