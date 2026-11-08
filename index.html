@@ -20,8 +20,9 @@
 </head>
 <body>
 <div id="app"><p class="boot">Loading…</p></div>
-<dialog id="dlg"></dialog>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<noscript><p class="boot">GATS Events needs JavaScript turned on.</p></noscript>
+<dialog id="dlg" aria-labelledby="dlgTitle"></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite" popover="manual"></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script src="/config.js"></script>
 <script src="/app.js"></script>

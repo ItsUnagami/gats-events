@@ -83,7 +83,27 @@ const S = {
     offline: "You're offline. Showing events saved {d}.",
     account: "Account",
     setupTitle: "Almost ready",
-    setupBody: "Add your Supabase project URL and key to config.js to finish setup. README.md walks through it."
+    setupBody: "Add your Supabase project URL and key to config.js to finish setup. README.md walks through it.",
+    googleOff: "Google sign-in isn't switched on yet. Please use the email code for now.",
+    skip: "Skip to content", mainNav: "Main", vDash: "Dashboard", vEvents: "Events",
+    // dashboard (admins)
+    dashTitle: "Dashboard", dashSub: "Everything that needs your attention, at a glance.",
+    sUpcoming: "Upcoming events", sUpcomingSub: "{n} in the next 30 days",
+    sDrafts: "Drafts", sDraftsSub: "Only admins can see these",
+    sGoing: "People going", sGoingSub: "Including guests · {n} maybe",
+    sVol: "Volunteer spots filled", sVolSub: "{n} still open", sVolNone: "No volunteer roles yet",
+    sTasks: "Checklist tasks done", sTasksSub: "Across upcoming events", sTasksNone: "No checklists yet",
+    sMembers: "Active members", sMembersSub: "{n} waiting for approval", sMembersNone: "No one waiting",
+    attention: "Needs attention", allClear: "All caught up. Nothing needs attention right now.",
+    aPending: "{n} people waiting for approval", aPending1: "1 person waiting for approval",
+    aSpots: "{t}: {n} volunteer spots open", aSpots1: "{t}: 1 volunteer spot open",
+    aTasks: "{t}: checklist {a} of {b} done", aNoPlan: "{t}: no checklist yet", aTbc: "{t}: date still to confirm",
+    aDraft: "{t} is still a draft", open: "Open",
+    upTable: "Upcoming events", colDate: "Date", colEvent: "Event", colGoing: "Going", colMaybe: "Maybe",
+    colVol: "Volunteers", colCheck: "Checklist", colStatus: "Status", published2: "Published",
+    team: "Members", manage: "Manage members", rOwner: "Owner", rAdmins: "Admins", rMembers: "Members",
+    rWaiting: "Waiting", rRemoved: "Removed", festNext: "Next festival", festNone: "No festivals coming up.",
+    viewCal: "View calendar"
   },
   ta: {
     org: "GATS நிகழ்வுகள்", orgAlt: "கிரேட்டர் அட்லாண்டா தமிழ்ச் சங்கம்",
@@ -160,7 +180,25 @@ const S = {
     offline: "இணைப்பு இல்லை. {d} சேமித்த நிகழ்வுகள் காட்டப்படுகின்றன.",
     account: "கணக்கு",
     setupTitle: "கிட்டத்தட்ட தயார்",
-    setupBody: "அமைப்பை முடிக்க config.js-இல் உங்கள் Supabase விவரங்களைச் சேர்க்கவும். README.md-இல் வழிமுறைகள் உள்ளன."
+    setupBody: "அமைப்பை முடிக்க config.js-இல் உங்கள் Supabase விவரங்களைச் சேர்க்கவும். README.md-இல் வழிமுறைகள் உள்ளன.",
+    googleOff: "Google மூலம் உள்நுழைவு இன்னும் இயக்கப்படவில்லை. இப்போதைக்கு மின்னஞ்சல் குறியீட்டைப் பயன்படுத்தவும்.",
+    skip: "உள்ளடக்கத்துக்குச் செல்", mainNav: "முதன்மை", vDash: "கட்டுப்பாட்டுப் பலகை", vEvents: "நிகழ்வுகள்",
+    dashTitle: "கட்டுப்பாட்டுப் பலகை", dashSub: "கவனிக்க வேண்டிய அனைத்தும் ஒரே பார்வையில்.",
+    sUpcoming: "வரவிருக்கும் நிகழ்வுகள்", sUpcomingSub: "அடுத்த 30 நாட்களில் {n}",
+    sDrafts: "வரைவுகள்", sDraftsSub: "நிர்வாகிகள் மட்டுமே பார்க்க முடியும்",
+    sGoing: "வருபவர்கள்", sGoingSub: "விருந்தினர்கள் உட்பட · {n} பேர் ஒருவேளை",
+    sVol: "நிரப்பப்பட்ட தன்னார்வ இடங்கள்", sVolSub: "{n} இடங்கள் காலியாக உள்ளன", sVolNone: "இன்னும் தன்னார்வப் பணிகள் இல்லை",
+    sTasks: "முடிந்த பணிகள்", sTasksSub: "வரவிருக்கும் நிகழ்வுகளில்", sTasksNone: "இன்னும் பணிப் பட்டியல்கள் இல்லை",
+    sMembers: "செயலில் உள்ள உறுப்பினர்கள்", sMembersSub: "{n} பேர் அனுமதிக்காகக் காத்திருக்கிறார்கள்", sMembersNone: "யாரும் காத்திருக்கவில்லை",
+    attention: "கவனிக்க வேண்டியவை", allClear: "எல்லாம் சரியாக உள்ளது. இப்போது கவனிக்க எதுவும் இல்லை.",
+    aPending: "{n} பேர் அனுமதிக்காகக் காத்திருக்கிறார்கள்", aSpots: "{t}: {n} தன்னார்வ இடங்கள் காலி",
+    aTasks: "{t}: பணிகள் {b}-இல் {a} முடிந்தன", aNoPlan: "{t}: இன்னும் பணிப் பட்டியல் இல்லை", aTbc: "{t}: தேதி உறுதிசெய்யப்பட வேண்டும்",
+    aDraft: "{t} இன்னும் வரைவாக உள்ளது", open: "திற",
+    upTable: "வரவிருக்கும் நிகழ்வுகள்", colDate: "தேதி", colEvent: "நிகழ்வு", colGoing: "வருகிறார்கள்", colMaybe: "ஒருவேளை",
+    colVol: "தன்னார்வலர்கள்", colCheck: "பணிகள்", colStatus: "நிலை", published2: "வெளியிடப்பட்டது",
+    team: "உறுப்பினர்கள்", manage: "உறுப்பினர்களை நிர்வகி", rOwner: "உரிமையாளர்", rAdmins: "நிர்வாகிகள்", rMembers: "உறுப்பினர்கள்",
+    rWaiting: "காத்திருப்பவர்கள்", rRemoved: "நீக்கப்பட்டவர்கள்", festNext: "அடுத்த பண்டிகை", festNone: "வரவிருக்கும் பண்டிகைகள் இல்லை.",
+    viewCal: "நாட்காட்டியைப் பார்"
   }
 };
 const CATS = ["celebration", "cultural", "school", "sports", "meeting", "volunteer", "festival", "other"];
@@ -191,6 +229,8 @@ const st = {
   dlgMode: null, openId: null, tab: "overview", confirmDel: false, form: null, membersTab: "waiting",
   menuOpen: false,
   auth: { step: "start", email: "", name: "", error: "", busy: false, resendAt: 0 },
+  view: /^#(dashboard|events)$/.test(location.hash) ? location.hash.slice(1) : null,
+  googleOn: null, // null = not checked yet, true/false once Supabase has told us
   installEvt: null, installDismissed: store.get("gats-install-dismissed") === "1"
 };
 
@@ -413,9 +453,34 @@ async function verifyCode() {
   if (error) { a.error = t("badCode"); render(); $("#authCode")?.focus(); }
   // success is picked up by onAuthStateChange
 }
+/* Ask Supabase which sign-in methods are switched on, so the Google button
+   only shows when it will work (instead of sending people to an error page). */
+async function checkProviders() {
+  try {
+    const r = await fetch(CFG.supabaseUrl + "/auth/v1/settings", { headers: { apikey: CFG.supabaseAnonKey } });
+    if (!r.ok) return;
+    const j = await r.json();
+    st.googleOn = !!(j && j.external && j.external.google);
+    if (st.screen === "auth") render();
+  } catch (e) { /* offline: leave the button visible */ }
+}
+/* Errors Supabase sends back in the address after a failed Google sign-in. */
+function takeUrlError() {
+  const p = new URLSearchParams(location.search.slice(1) + "&" + location.hash.slice(1));
+  const m = p.get("error_description") || p.get("error");
+  if (!m) return;
+  st.auth.error = t("authFail", { m });
+  history.replaceState(null, "", location.pathname);
+}
 async function signInGoogle() {
+  if (st.googleOn === false) { st.auth.error = t("googleOff"); render(); return; }
+  st.auth.busy = true; st.auth.error = ""; render();
   const { error } = await sb.auth.signInWithOAuth({ provider: "google", options: { redirectTo: location.origin + "/" } });
-  if (error) { st.auth.error = t("authFail", { m: error.message }); render(); }
+  if (error) {
+    st.auth.busy = false;
+    st.auth.error = /provider is not enabled/i.test(error.message) ? t("googleOff") : t("authFail", { m: error.message });
+    render();
+  }
 }
 async function signOut() {
   st.menuOpen = false;
@@ -432,10 +497,38 @@ const KOLAM = `<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
 <path d="M0 13 Q13 13 13 0 M40 13 Q27 13 27 0 M0 27 Q13 27 13 40 M40 27 Q27 27 27 40"/></g>
 </pattern></defs><rect width="100%" height="100%" fill="url(#kolam)"/></svg>`;
 const GMARK = `<svg class="gmark" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>`;
+/* simple line icons (decorative: the text next to them carries the meaning) */
+const ICONS = {
+  chart: '<path d="M4 20V11M10 20V5M16 20v-6M21 20H3"/>',
+  calendar: '<rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+  users: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.8c1.9.6 3.1 2.3 3.5 5.2"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  check: '<path d="M4 12.5l5 5L20 6.5"/>',
+  list: '<path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/>',
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  heart: '<path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z"/>',
+  draft: '<path d="M4 20h4L19.5 8.5l-4-4L4 16z"/>',
+  star: '<path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"/>',
+  ticket: '<path d="M3 8a2 2 0 0 0 0 4v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 1 0-4V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z"/><path d="M14 4v16"/>'
+};
+const ic = (n) => `<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${ICONS[n] || ""}</svg>`;
+const views = () => (isAdmin() ? ["dashboard", "events"] : ["events"]);
+const currentView = () => (views().includes(st.view) ? st.view : views()[0]);
+
 const langToggle = () => `<div class="lang" role="group" aria-label="Language">
   <button type="button" data-lang="en" aria-pressed="${st.lang === "en"}">EN</button>
   <button type="button" data-lang="ta" aria-pressed="${st.lang === "ta"}">தமிழ்</button></div>`;
 
+/* Name every form control after the text of the <label> around it, so screen readers
+   and AI agents see "Event name", not an anonymous text box. */
+function nameControls(root) {
+  for (const lab of root.querySelectorAll("label")) {
+    const ctl = lab.querySelector("input,select,textarea");
+    if (!ctl || ctl.hasAttribute("aria-label")) continue;
+    const txt = [...lab.childNodes].filter((n) => n.nodeType === 3).map((n) => n.textContent).join(" ").replace(/\s+/g, " ").trim();
+    if (txt) ctl.setAttribute("aria-label", txt);
+  }
+}
 function render() {
   document.documentElement.lang = st.lang === "ta" ? "ta" : "en";
   const app = $("#app");
@@ -445,62 +538,69 @@ function render() {
   else if (st.screen === "pending") app.innerHTML = gateHTML(t("pendingTitle", { n: st.me?.full_name || "" }).replace(/,\s*$/, ""), t("pendingBody"), true);
   else if (st.screen === "blocked") app.innerHTML = gateHTML(t("blockedTitle"), t("blockedBody") + (CFG.contactEmail ? " " + CFG.contactEmail : ""), false);
   else app.innerHTML = appHTML();
+  nameControls(app);
 }
 
 function setupHTML() {
   return `<div class="auth"><div class="auth-art">${KOLAM}<b>GATS Events</b><span>Greater Atlanta Tamil Sangam</span></div>
-    <div class="auth-panel"><h1>${esc(t("setupTitle"))}</h1><p class="hint">${esc(t("setupBody"))}</p></div></div>`;
+    <main class="auth-panel"><h1>${esc(t("setupTitle"))}</h1><p class="hint">${esc(t("setupBody"))}</p></main></div>`;
 }
 
 function authHTML() {
   const a = st.auth;
   let panel;
   if (a.step === "code") {
-    panel = `<h1>${esc(t("signInTitle"))}</h1>
+    panel = `<h1 id="authTitle">${esc(t("signInTitle"))}</h1>
       <p>${esc(t("checkInbox", { e: a.email }))}</p><p class="hint">${esc(t("enterCode"))}</p>
       <form id="codeForm" novalidate>
-        <label>${esc(t("code"))}<input id="authCode" class="code" inputmode="numeric" autocomplete="one-time-code" maxlength="10" required></label>
+        <label>${esc(t("code"))}<input id="authCode" name="code" class="code" inputmode="numeric" autocomplete="one-time-code" maxlength="10" required></label>
         ${a.error ? `<p class="err" role="alert">${esc(a.error)}</p>` : ""}
         <button class="btn primary wide" type="submit" ${a.busy ? "disabled" : ""}>${esc(t("verify"))}</button>
       </form>
       <p class="fine"><button class="linkish" type="button" id="resendBtn" data-resend>${esc(t("resend"))}</button></p>
       <p class="fine"><button class="linkish" type="button" data-auth-back>${esc(t("useDifferent"))}</button></p>`;
   } else {
-    panel = `<h1>${esc(t("signInTitle"))}</h1><p class="hint">${esc(t("signInSub"))}</p>
-      <button class="btn wide" type="button" data-google>${GMARK}${esc(t("google"))}</button>
-      <div class="divider">${esc(t("or"))}</div>
+    const google = st.googleOn === false ? "" : `<button class="btn wide" type="button" data-google ${a.busy ? "disabled" : ""}>${GMARK}${esc(t("google"))}</button>
+      <div class="divider">${esc(t("or"))}</div>`;
+    panel = `<h1 id="authTitle">${esc(t("signInTitle"))}</h1><p class="hint">${esc(t("signInSub"))}</p>
+      ${google}
       <form id="emailForm" novalidate>
-        <label>${esc(t("email"))}<input id="authEmail" type="email" autocomplete="email" value="${esc(a.email)}" required></label>
-        <label>${esc(t("yourName"))}<input id="authName" autocomplete="name" maxlength="80" value="${esc(a.name)}"><span class="fine" style="font-weight:400">${esc(t("nameHint"))}</span></label>
+        <label>${esc(t("email"))}<input id="authEmail" name="email" type="email" autocomplete="email" value="${esc(a.email)}" required></label>
+        <label>${esc(t("yourName"))}<input id="authName" name="name" autocomplete="name" maxlength="80" value="${esc(a.name)}"><span class="fine" style="font-weight:400">${esc(t("nameHint"))}</span></label>
         ${a.error ? `<p class="err" role="alert">${esc(a.error)}</p>` : ""}
         <button class="btn primary wide" type="submit" ${a.busy ? "disabled" : ""}>${esc(t("sendCode"))}</button>
       </form>
       <p class="fine">${esc(t("approvalNote"))}</p>`;
   }
-  return `<div class="auth"><div class="auth-art">${KOLAM}<b>${esc(t("org"))}</b><span>${esc(t("orgAlt"))}</span></div>
-    <div class="auth-panel"><div class="top">${langToggle()}</div>${panel}</div></div>`;
+  return `<div class="auth"><div class="auth-art" aria-hidden="true">${KOLAM}<b>${esc(t("org"))}</b><span>${esc(t("orgAlt"))}</span></div>
+    <main class="auth-panel" aria-labelledby="authTitle"><div class="top">${langToggle()}</div>${panel}</main></div>`;
 }
 
 function gateHTML(h, body, pending) {
-  return `<div class="auth"><div class="auth-art">${KOLAM}<b>${esc(t("org"))}</b><span>${esc(t("orgAlt"))}</span></div>
-    <div class="auth-panel"><div class="top">${langToggle()}</div>
-      <h1>${esc(h)}</h1><p class="hint">${esc(body)}</p>
+  return `<div class="auth"><div class="auth-art" aria-hidden="true">${KOLAM}<b>${esc(t("org"))}</b><span>${esc(t("orgAlt"))}</span></div>
+    <main class="auth-panel" aria-labelledby="authTitle"><div class="top">${langToggle()}</div>
+      <h1 id="authTitle">${esc(h)}</h1><p class="hint">${esc(body)}</p>
       <p class="fine">${esc(st.me?.email || "")}</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         ${pending ? `<button class="btn primary" type="button" data-check-again>${esc(t("checkAgain"))}</button>` : ""}
-        <button class="btn" type="button" data-signout>${esc(t("signOut"))}</button></div></div></div>`;
+        <button class="btn" type="button" data-signout>${esc(t("signOut"))}</button></div></main></div>`;
 }
 
 function headerHTML() {
   const pc = pendingCount();
   const roleName = isOwner() ? t("owner") : isAdmin() ? t("admin") : t("member");
-  return `<header>
-    <div class="brand"><b>${esc(t("org"))}</b><span>${esc(t("orgAlt"))}</span></div>
+  const v = currentView();
+  const nav = views().length > 1 ? `<nav class="views" aria-label="${esc(t("mainNav"))}">
+      ${[["dashboard", "vDash", "chart"], ["events", "vEvents", "calendar"]].map(([k, l, i]) =>
+        `<a href="#${k}" aria-label="${esc(t(l))}" ${v === k ? 'aria-current="page"' : ""}>${ic(i)}<span>${esc(t(l))}</span></a>`).join("")}</nav>` : "";
+  return `<header class="topbar"><div class="topbar-in">
+    <a class="brand" href="#${views()[0]}" aria-label="${esc(t("org") + " – " + t(views()[0] === "dashboard" ? "vDash" : "vEvents"))}"><span class="logo" aria-hidden="true">G</span><span class="brand-t"><b>${esc(t("org"))}</b><span>${esc(t("orgAlt"))}</span></span></a>
+    ${nav}
     <div class="tools">
       ${langToggle()}
       ${isAdmin() ? `<button class="btn sm people-btn" type="button" data-members aria-label="${esc(t("members"))}${pc ? ", " + esc(t("approvalsWaiting", { n: pc })) : ""}">
-        <span aria-hidden="true">👥</span><span class="people-label">${esc(t("members"))}</span>${pc ? `<span class="count-dot">${pc}</span>` : ""}</button>` : ""}
-      ${isAdmin() ? `<button class="btn primary plan-top" type="button" data-plan>${esc(t("plan"))}</button>` : ""}
+        ${ic("users")}<span class="people-label">${esc(t("members"))}</span>${pc ? `<span class="count-dot" aria-hidden="true">${pc}</span>` : ""}</button>` : ""}
+      ${isAdmin() ? `<button class="btn primary plan-top" type="button" data-plan>${ic("plus")}${esc(t("plan"))}</button>` : ""}
       <div class="acct">
         <button class="acct-btn" type="button" data-menu aria-haspopup="true" aria-expanded="${st.menuOpen}" aria-label="${esc(t("account"))}">${avatar(myId(), "lg", st.me?.full_name || st.me?.email)}</button>
         ${st.menuOpen ? `<div class="menu" role="menu">
@@ -509,7 +609,18 @@ function headerHTML() {
           ${canInstall() ? `<button type="button" role="menuitem" data-install>${esc(t("install"))}</button>` : ""}
           <button type="button" role="menuitem" data-signout>${esc(t("signOut"))}</button></div>` : ""}
       </div>
-    </div></header>`;
+    </div></div></header>`;
+}
+/* phone-sized screens: an app-style tab bar for admins */
+function bottomNavHTML() {
+  if (!isAdmin()) return "";
+  const v = currentView(), pc = pendingCount();
+  return `<nav class="bottom-nav" aria-label="${esc(t("mainNav"))}">
+    <a href="#dashboard" aria-label="${esc(t("vDash"))}" ${v === "dashboard" ? 'aria-current="page"' : ""}>${ic("chart")}<span>${esc(t("vDash"))}</span></a>
+    <a href="#events" aria-label="${esc(t("vEvents"))}" ${v === "events" ? 'aria-current="page"' : ""}>${ic("calendar")}<span>${esc(t("vEvents"))}</span></a>
+    <button type="button" class="bn-plan" data-plan aria-label="${esc(t("plan"))}">${ic("plus")}<span>${esc(t("planShort"))}</span></button>
+    <button type="button" data-members aria-label="${esc(t("members") + (pc ? ", " + t("approvalsWaiting", { n: pc }) : ""))}">${ic("users")}<span>${esc(t("members"))}</span>${pc ? `<span class="count-dot" aria-hidden="true">${pc}</span>` : ""}</button>
+  </nav>`;
 }
 
 /* install support */
@@ -526,7 +637,7 @@ function bannersHTML() {
   let h = "";
   if (st.offlineAt) h += `<div class="banner warn"><p>${esc(t("offline", { d: new Intl.DateTimeFormat(loc(), { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }).format(new Date(st.offlineAt)) }))}</p></div>`;
   const pc = pendingCount();
-  if (isAdmin() && pc) h += `<div class="banner alert"><p>${esc(t("approvalsWaiting", { n: pc }))}</p><button class="btn sm primary" type="button" data-members>${esc(t("review"))}</button></div>`;
+  if (isAdmin() && pc && currentView() !== "dashboard") h += `<div class="banner alert"><p>${esc(t("approvalsWaiting", { n: pc }))}</p><button class="btn sm primary" type="button" data-members>${esc(t("review"))}</button></div>`;
   if (canInstall() && !st.installDismissed) h += `<div class="banner"><p>${esc(isIOS() && !st.installEvt ? t("iosInstall") : t("installBanner"))}</p>
     ${st.installEvt ? `<button class="btn sm primary" type="button" data-install>${esc(t("install"))}</button>` : ""}<button class="btn sm quiet" type="button" data-install-dismiss>${esc(t("dismiss"))}</button></div>`;
   return h;
@@ -535,7 +646,7 @@ function bannersHTML() {
 function rsvpButtons(e) {
   if (isFest(e) || e._draft) return "";
   const mine = myRsvp(e.id)?.status; const dis = st.offlineAt ? "disabled" : "";
-  return `<div class="rsvp" role="group" aria-label="${esc(t("willYou"))}">${["going", "maybe", "no"].map((s) =>
+  return `<div class="rsvp" role="group" aria-label="${esc(t("willYou") + " " + title(e))}">${["going", "maybe", "no"].map((s) =>
     `<button type="button" data-rsvp="${esc(e.id)}" data-s="${s}" aria-pressed="${mine === s}" ${dis}>${esc(t(s))}</button>`).join("")}</div>`;
 }
 function signals(e) {
@@ -551,9 +662,111 @@ function tagsHTML(e) {
 }
 
 function appHTML() {
+  const body = !st.loaded ? `<p class="loading">${esc(t("loading"))}</p>` : currentView() === "dashboard" ? dashboardHTML() : eventsHTML();
+  return `<a class="skip" href="#main">${esc(t("skip"))}</a>${headerHTML()}
+    <div class="wrap${isAdmin() ? " has-bn" : ""}">${bannersHTML()}<main id="main" tabindex="-1" data-view="${currentView()}">${body}</main>
+    <details class="access"><summary>${esc(t("accessQ"))}</summary><p>${esc(t("accessA"))}</p></details></div>
+    ${bottomNavHTML()}`;
+}
+
+/* ================= admin dashboard ================= */
+function dashStats() {
+  const today = todayS(), in30 = ymd(new Date(Date.now() + 30 * 864e5));
+  const future = allItems().filter((e) => e.date >= today && !isFest(e));
+  const pub = future.filter((e) => !e._draft), drafts = future.filter((e) => e._draft);
+  let going = 0, maybe = 0, need = 0, filled = 0, tasks = 0, done = 0;
+  for (const e of pub) { const c = counts(e.id); going += c.going; maybe += c.maybe; }
+  for (const e of future) {
+    for (const s of slotsOf(e)) { const n = Math.max(1, Number(s.need) || 1); need += n; filled += Math.min(n, slotPeople(e.id, s.id).length); }
+    const p = planOf(e.id); tasks += p.length; done += p.filter((i) => i.done).length;
+  }
+  const r = { owner: 0, admin: 0, member: 0, pending: 0, blocked: 0 };
+  for (const p of st.people) if (p.role in r) r[p.role]++;
+  return { future, pub, drafts, soon: pub.filter((e) => e.date <= in30).length, going, maybe, need, filled, tasks, done, r };
+}
+const pctOf = (a, b) => (b ? Math.round((a / b) * 100) : 0);
+const meter = (p, label) => `<span class="meter" role="img" aria-label="${esc(label || p + "%")}"><i style="width:${p}%"></i></span>`;
+function statCard(o) {
+  const tag = o.act ? "button" : "div";
+  return `<${tag} class="stat${o.tone ? " " + o.tone : ""}"${o.act ? ` type="button" ${o.act}` : ""} aria-label="${esc(o.label + ": " + o.value + ". " + o.sub)}"${o.act ? "" : ' role="group"'}>
+    <span class="stat-top"><span class="stat-ic">${ic(o.icon)}</span><span class="stat-label">${esc(o.label)}</span></span>
+    <span class="stat-value">${esc(o.value)}</span>
+    ${o.pct != null ? meter(o.pct) : ""}
+    <span class="stat-sub">${esc(o.sub)}</span></${tag}>`;
+}
+function attentionItems(S) {
+  const out = [], soon = ymd(new Date(Date.now() + 21 * 864e5));
+  if (S.r.pending) out.push({ icon: "users", tone: "hot", text: S.r.pending === 1 ? t("aPending1") : t("aPending", { n: S.r.pending }), act: "data-members", label: t("review") });
+  for (const e of S.future) {
+    const name = title(e), sub = fmt(e.date, { weekday: "short", month: "short", day: "numeric" }) + " · " + when(e.date);
+    const open = `data-open="${esc(e.id)}"`;
+    if (e._draft) { out.push({ icon: "draft", text: t("aDraft", { t: name }), sub, act: open, label: t("open") }); continue; }
+    if (e.date > soon) continue;
+    const spots = openSpots(e);
+    if (spots) out.push({ icon: "heart", tone: "warn", text: t(spots === 1 ? "aSpots1" : "aSpots", { t: name, n: spots }), sub, act: open + ' data-go-tab="vol"', label: t("open") });
+    const p = planOf(e.id), d = p.filter((i) => i.done).length;
+    if (!p.length) out.push({ icon: "list", text: t("aNoPlan", { t: name }), sub, act: open + ' data-go-tab="check"', label: t("open") });
+    else if (d < p.length) out.push({ icon: "list", text: t("aTasks", { t: name, a: d, b: p.length }), sub, act: open + ' data-go-tab="check"', label: t("open") });
+    if (e.tentative) out.push({ icon: "clock", text: t("aTbc", { t: name }), sub, act: open, label: t("open") });
+  }
+  return out;
+}
+function upTableHTML(S) {
+  const rows = S.future.slice(0, 12);
+  if (!rows.length) return `<p class="hint">${esc(t("noEventsAdmin"))}</p>`;
+  const cols = ["colDate", "colEvent", "colGoing", "colMaybe", "colVol", "colCheck", "colStatus"];
+  return `<div class="table-wrap"><table class="dt"><thead><tr>${cols.map((k) => `<th scope="col">${esc(t(k))}</th>`).join("")}</tr></thead><tbody>
+    ${rows.map((e) => {
+      const c = counts(e.id), sl = slotsOf(e), p = planOf(e.id), d = p.filter((i) => i.done).length;
+      const need = sl.reduce((n, s) => n + Math.max(1, Number(s.need) || 1), 0);
+      const fill = sl.reduce((n, s) => n + Math.min(Math.max(1, Number(s.need) || 1), slotPeople(e.id, s.id).length), 0);
+      const status = e._draft ? `<span class="tag draft">${esc(t("draft"))}</span>` : e.tentative ? `<span class="tag">${esc(t("tbc"))}</span>` : `<span class="tag ok">${esc(t("published2"))}</span>`;
+      return `<tr>
+        <td data-label="${esc(t("colDate"))}"><b>${esc(fmt(e.date, { month: "short", day: "numeric" }))}</b><span class="sub">${esc(when(e.date))}</span></td>
+        <th scope="row" data-label="${esc(t("colEvent"))}"><button type="button" class="ev-link" data-open="${esc(e.id)}">${esc(title(e))}</button><span class="sub">${esc(timeRange(e))}${e.venue ? " · " + esc(e.venue) : ""}</span></th>
+        <td class="num" data-label="${esc(t("colGoing"))}">${e._draft ? "–" : c.going}</td>
+        <td class="num" data-label="${esc(t("colMaybe"))}">${e._draft ? "–" : c.maybe}</td>
+        <td data-label="${esc(t("colVol"))}">${need ? `<span class="mini">${fill}/${need}${meter(pctOf(fill, need), t("filled", { a: fill, b: need }))}</span>` : "–"}</td>
+        <td data-label="${esc(t("colCheck"))}">${p.length ? `<span class="mini">${d}/${p.length}${meter(pctOf(d, p.length), t("clProgress", { a: d, b: p.length }))}</span>` : "–"}</td>
+        <td data-label="${esc(t("colStatus"))}">${status}</td></tr>`;
+    }).join("")}</tbody></table></div>`;
+}
+function dashboardHTML() {
+  const S = dashStats(), att = attentionItems(S), fest = allItems().find((e) => e.date >= todayS() && isFest(e));
+  const active = S.r.owner + S.r.admin + S.r.member;
+  const stats = [
+    { icon: "calendar", label: t("sUpcoming"), value: S.pub.length, sub: t("sUpcomingSub", { n: S.soon }), act: 'data-goto="events"' },
+    { icon: "draft", label: t("sDrafts"), value: S.drafts.length, sub: t("sDraftsSub") },
+    { icon: "ticket", label: t("sGoing"), value: S.going, sub: t("sGoingSub", { n: S.maybe }), tone: "teal" },
+    { icon: "heart", label: t("sVol"), value: S.need ? `${S.filled}/${S.need}` : "0", pct: S.need ? pctOf(S.filled, S.need) : null, sub: S.need ? t("sVolSub", { n: S.need - S.filled }) : t("sVolNone"), tone: S.need > S.filled ? "gold" : "" },
+    { icon: "list", label: t("sTasks"), value: S.tasks ? `${S.done}/${S.tasks}` : "0", pct: S.tasks ? pctOf(S.done, S.tasks) : null, sub: S.tasks ? t("sTasksSub") : t("sTasksNone") },
+    { icon: "users", label: t("sMembers"), value: active, sub: S.r.pending ? t("sMembersSub", { n: S.r.pending }) : t("sMembersNone"), tone: S.r.pending ? "hot" : "", act: "data-members" }
+  ];
+  const roles = [["rOwner", S.r.owner], ["rAdmins", S.r.admin], ["rMembers", S.r.member], ["rWaiting", S.r.pending], ["rRemoved", S.r.blocked]];
+  return `<div class="page-head"><h1 id="pageTitle">${esc(t("dashTitle"))}</h1><p class="hint">${esc(t("dashSub"))}</p></div>
+    <div class="stats">${stats.map(statCard).join("")}</div>
+    <div class="dash-grid">
+      <section class="card" aria-labelledby="attH"><div class="card-head"><h2 id="attH">${esc(t("attention"))}</h2>${att.length ? `<span class="badge">${att.length}</span>` : ""}</div>
+        ${att.length ? `<ul class="attn">${att.slice(0, 10).map((a) => `<li class="${a.tone || ""}"><span class="attn-ic">${ic(a.icon)}</span>
+          <span class="attn-t">${esc(a.text)}${a.sub ? `<span class="sub">${esc(a.sub)}</span>` : ""}</span>
+          <button class="btn sm" type="button" ${a.act} aria-label="${esc(a.label + ": " + a.text)}">${esc(a.label)}</button></li>`).join("")}</ul>`
+          : `<p class="all-clear">${ic("check")}<span>${esc(t("allClear"))}</span></p>`}
+      </section>
+      <div class="side">
+        <section class="card" aria-labelledby="teamH"><div class="card-head"><h2 id="teamH">${esc(t("team"))}</h2><button class="btn sm" type="button" data-members>${esc(t("manage"))}</button></div>
+          <dl class="kv">${roles.map(([k, n]) => `<div${k === "rWaiting" && n ? ' class="hot"' : ""}><dt>${esc(t(k))}</dt><dd>${n}</dd></div>`).join("")}</dl></section>
+        <section class="card" aria-labelledby="festH"><div class="card-head"><h2 id="festH">${esc(t("festNext"))}</h2></div>
+          ${fest ? `<button type="button" class="fest-card" data-open="${esc(fest.id)}" aria-label="${esc(title(fest) + ", " + fmt(fest.date, { weekday: "long", month: "long", day: "numeric" }) + ", " + when(fest.date))}">${ic("star")}<span><b>${esc(title(fest))}</b><span class="sub">${esc(fmt(fest.date, { weekday: "long", month: "long", day: "numeric" }))} · ${esc(when(fest.date))}</span></span></button>`
+            : `<p class="hint">${esc(t("festNone"))}</p>`}</section>
+      </div>
+    </div>
+    <section class="card" aria-labelledby="upTH"><div class="card-head"><h2 id="upTH">${esc(t("upTable"))}</h2><a class="btn sm" href="#events">${ic("calendar")}${esc(t("viewCal"))}</a></div>${upTableHTML(S)}</section>`;
+}
+
+/* ================= events view (everyone) ================= */
+function eventsHTML() {
   let body;
-  if (!st.loaded) body = `<p class="loading">${esc(t("loading"))}</p>`;
-  else {
+  {
     const today = todayS(), items = allItems(), future = items.filter((e) => e.date >= today);
     const hero = future.find((e) => !isFest(e) && !e._draft);
     const nextFest = future.find(isFest);
@@ -586,15 +799,14 @@ function appHTML() {
       <button class="btn sm" type="button" data-month="0">${esc(t("jumpToday"))}</button></div></div>
       ${calendarHTML(items)}${dayPanelHTML(items)}</section>`;
   }
-  return `<div class="wrap">${headerHTML()}${bannersHTML()}<main>${body}</main>
-    <details class="access"><summary>${esc(t("accessQ"))}</summary><p>${esc(t("accessA"))}</p></details></div>
-    ${isAdmin() ? `<button class="btn primary fab" type="button" data-plan>+ ${esc(t("planShort"))}</button>` : ""}`;
+  return body;
 }
 
 function rowHTML(e) {
   const d = parse(e.date);
   const sub = isFest(e) ? esc(when(e.date)) : [esc(timeRange(e)), e.venue ? esc(e.venue) : ""].filter(Boolean).join(" · ");
-  return `<button type="button" class="row${isFest(e) ? " fest" : ""}" data-open="${esc(e.id)}">
+  const aria = [title(e), fmt(e.date, { weekday: "long", month: "long", day: "numeric" }), isFest(e) ? t("festival") : timeRange(e), e.venue, e._draft ? t("draft") : "", e.tentative ? t("tbc") : ""].filter(Boolean).join(", ");
+  return `<button type="button" class="row${isFest(e) ? " fest" : ""}" data-open="${esc(e.id)}" aria-label="${esc(aria)}">
     <span class="dblock"><span class="d">${d.getDate()}</span><span class="m">${esc(fmt(e.date, { month: "short" }))}</span></span>
     <span><span class="t">${esc(title(e))}</span><span class="s">${sub}</span>${signals(e)}</span>
     <span class="tags">${tagsHTML(e)}</span></button>`;
@@ -654,10 +866,11 @@ function openDetail(id, opts = {}) {
   }
   dlg.innerHTML = `<div class="dlg">
     <div class="dlg-head"><div class="titles">${tagsHTML(e) ? `<div class="tags">${tagsHTML(e)}</div>` : ""}
-      <h2>${esc(title(e))}</h2>${st.lang === "en" && e.titleTa ? `<p class="hint">${esc(e.titleTa)}</p>` : ""}</div>
+      <h2 id="dlgTitle">${esc(title(e))}</h2>${st.lang === "en" && e.titleTa ? `<p class="hint">${esc(e.titleTa)}</p>` : ""}</div>
       <button class="icon-btn" type="button" data-close aria-label="${esc(t("close"))}">×</button></div>
     ${tabs}<div class="dlg-body">${body}</div>
     ${foot.trim() ? `<div class="dlg-foot">${foot}</div>` : ""}</div>`;
+  nameControls(dlg);
   if (!dlg.open) dlg.showModal();
   if (opts.focus) document.getElementById(opts.focus)?.focus();
 }
@@ -685,8 +898,8 @@ function volunteersHTML(e) {
     const ppl = slotPeople(e.id, s.id), need = Math.max(1, Number(s.need) || 1), inIt = ppl.includes(myId()), full = ppl.length >= need;
     const pct = Math.min(100, Math.round((ppl.length / need) * 100));
     const act = e._draft ? "" : inIt
-      ? `<button class="btn sm" type="button" data-vol="${esc(e.id)}" data-slot="${esc(s.id)}" data-leave ${st.offlineAt ? "disabled" : ""}>${esc(t("leave"))}</button>`
-      : `<button class="btn sm ${full ? "" : "primary"}" type="button" data-vol="${esc(e.id)}" data-slot="${esc(s.id)}" ${full || st.offlineAt ? "disabled" : ""}>${esc(full ? t("full") : t("signUp"))}</button>`;
+      ? `<button class="btn sm" type="button" data-vol="${esc(e.id)}" data-slot="${esc(s.id)}" data-leave aria-label="${esc(t("leave") + ": " + s.name)}" ${st.offlineAt ? "disabled" : ""}>${esc(t("leave"))}</button>`
+      : `<button class="btn sm ${full ? "" : "primary"}" type="button" data-vol="${esc(e.id)}" data-slot="${esc(s.id)}" aria-label="${esc((full ? t("full") : t("signUp")) + ": " + s.name)}" ${full || st.offlineAt ? "disabled" : ""}>${esc(full ? t("full") : t("signUp"))}</button>`;
     return `<div class="slot${full ? " full" : ""}"><span class="name">${esc(s.name)}</span>
       <span class="sub"><span class="bar"><i style="width:${pct}%"></i></span><span>${esc(t("filled", { a: ppl.length, b: need }))}</span>
       ${inIt ? `<span class="mine">${esc(t("youIn"))}</span>` : ""}${avatarStack(ppl)}</span>
@@ -701,7 +914,7 @@ function checklistHTML(e) {
     ${items.length ? `<ul class="items">${items.map((i) => `<li class="item${i.done ? " done" : ""}">
       <input type="checkbox" data-tick="${esc(i.id)}" ${i.done ? "checked" : ""} aria-label="${esc(i.text)}">
       <span><span class="txt">${esc(i.text)}</span>${i.done && i.done_by ? `<span class="by">${esc(t("doneBy", { n: nameOf(i.done_by) }))}</span>` : ""}</span>
-      <button class="icon-btn" type="button" data-rmitem="${esc(i.id)}" aria-label="${esc(t("remove"))}">×</button></li>`).join("")}</ul>`
+      <button class="icon-btn" type="button" data-rmitem="${esc(i.id)}" aria-label="${esc(t("remove") + ": " + i.text)}">×</button></li>`).join("")}</ul>`
       : `<p class="hint">${esc(t("clEmpty"))}</p><div><button class="btn" type="button" data-starter>${esc(t("starter"))}</button></div>`}
     <form class="add-row" id="addItemForm"><input id="newItem" maxlength="200" placeholder="${esc(t("addItem"))}" aria-label="${esc(t("addItem"))}"><button class="btn" type="submit">${esc(t("add"))}</button></form>`;
 }
@@ -719,7 +932,7 @@ function openForm(id, presetDate, prefill, focusSlots) {
   const v = e ? { ...e } : { title: prefill ? prefill + (st.lang === "ta" ? " கொண்டாட்டம்" : " celebration") : "", date: presetDate || todayS(), category: "celebration" };
   st.form = { id: e?.id || null, slots: slotsOf(v).map((s) => ({ ...s })), origSlotIds: slotsOf(v).map((s) => s.id) };
   dlg.innerHTML = `<form class="dlg" novalidate id="evForm">
-    <div class="dlg-head"><div class="titles"><h2>${esc(e ? t("editEvent") : t("newEvent"))}</h2></div>
+    <div class="dlg-head"><div class="titles"><h2 id="dlgTitle">${esc(e ? t("editEvent") : t("newEvent"))}</h2></div>
       <button class="icon-btn" type="button" data-close aria-label="${esc(t("close"))}">×</button></div>
     <div class="dlg-body">
       <div class="fgroup">
@@ -750,6 +963,7 @@ function openForm(id, presetDate, prefill, focusSlots) {
       <button class="btn" type="button" data-form-cancel="${esc(e?.id || "")}">${esc(t("cancel"))}</button>
       <button class="btn primary" type="submit" id="saveBtn">${esc(e ? t("saveChanges") : t("publish"))}</button>
     </div></form>`;
+  nameControls(dlg);
   if (!dlg.open) dlg.showModal();
   renderSlotEditor();
   const f = $("#evForm");
@@ -762,9 +976,9 @@ function renderSlotEditor() {
   list.innerHTML = `<div class="fgroup" style="gap:8px">
     ${sl.length ? `<div class="slot-edit" style="font-size:.8rem;color:var(--muted);font-weight:600"><span>${esc(t("slotName"))}</span><span>${esc(t("slotNeed"))}</span><span></span></div>` : ""}
     ${sl.map((s, i) => `<div class="slot-edit">
-      <input data-sname="${i}" maxlength="80" value="${esc(s.name)}" aria-label="${esc(t("slotName"))}">
-      <input data-sneed="${i}" type="number" min="1" max="99" value="${Number(s.need) || 1}" aria-label="${esc(t("slotNeed"))}">
-      <button class="icon-btn" type="button" data-rmslot="${i}" aria-label="${esc(t("remove"))}">×</button></div>`).join("")}
+      <input data-sname="${i}" maxlength="80" value="${esc(s.name)}" aria-label="${esc(t("slotName") + " " + (i + 1))}">
+      <input data-sneed="${i}" type="number" min="1" max="99" value="${Number(s.need) || 1}" aria-label="${esc(t("slotNeed") + " " + (i + 1))}">
+      <button class="icon-btn" type="button" data-rmslot="${i}" aria-label="${esc(t("remove") + " " + (s.name || i + 1))}">×</button></div>`).join("")}
     <div class="chips"><button type="button" data-addslot="">+ ${esc(t("addSlot"))}</button>
       ${S[st.lang].sugg.filter((n) => !sl.some((s) => s.name === n)).map((n) => `<button type="button" data-addslot="${esc(n)}">${esc(n)}</button>`).join("")}</div></div>`;
 }
@@ -829,20 +1043,21 @@ function renderMembers() {
   const list = tab === "waiting" ? waiting : tab === "members" ? active : removed;
   const roleLabel = (r) => (r === "owner" ? t("owner") : r === "admin" ? t("admin") : r === "member" ? t("member") : "");
   const actions = (p) => {
+    const L = (k) => ` aria-label="${esc(t(k) + ": " + (p.full_name || p.email || ""))}"`;
     if (p.id === myId()) return `<span class="role">${esc(t("you"))}</span>`;
-    if (p.role === "pending") return `<button class="btn sm" type="button" data-setrole="${esc(p.id)}" data-r="blocked">${esc(t("decline"))}</button><button class="btn sm primary" type="button" data-setrole="${esc(p.id)}" data-r="member">${esc(t("approve"))}</button>`;
-    if (p.role === "blocked") return `<button class="btn sm" type="button" data-setrole="${esc(p.id)}" data-r="member">${esc(t("restore"))}</button>`;
+    if (p.role === "pending") return `<button class="btn sm" type="button" data-setrole="${esc(p.id)}" data-r="blocked"${L("decline")}>${esc(t("decline"))}</button><button class="btn sm primary" type="button" data-setrole="${esc(p.id)}" data-r="member"${L("approve")}>${esc(t("approve"))}</button>`;
+    if (p.role === "blocked") return `<button class="btn sm" type="button" data-setrole="${esc(p.id)}" data-r="member"${L("restore")}>${esc(t("restore"))}</button>`;
     if (p.role === "owner") return "";
     let h = "";
     if (isOwner()) h += p.role === "admin"
-      ? `<button class="btn sm" type="button" data-setrole="${esc(p.id)}" data-r="member">${esc(t("removeAdmin"))}</button>`
-      : `<button class="btn sm" type="button" data-setrole="${esc(p.id)}" data-r="admin">${esc(t("makeAdmin"))}</button>`;
-    if (p.role === "member" || isOwner()) h += `<button class="btn sm quiet danger" type="button" data-setrole="${esc(p.id)}" data-r="blocked">${esc(t("removeAccess"))}</button>`;
+      ? `<button class="btn sm" type="button" data-setrole="${esc(p.id)}" data-r="member"${L("removeAdmin")}>${esc(t("removeAdmin"))}</button>`
+      : `<button class="btn sm" type="button" data-setrole="${esc(p.id)}" data-r="admin"${L("makeAdmin")}>${esc(t("makeAdmin"))}</button>`;
+    if (p.role === "member" || isOwner()) h += `<button class="btn sm quiet danger" type="button" data-setrole="${esc(p.id)}" data-r="blocked"${L("removeAccess")}>${esc(t("removeAccess"))}</button>`;
     return h;
   };
   const empty = tab === "waiting" ? t("noneWaiting") : tab === "removed" ? t("noneRemoved") : "";
   dlg.innerHTML = `<div class="dlg">
-    <div class="dlg-head"><div class="titles"><h2>${esc(t("members"))}</h2></div>
+    <div class="dlg-head"><div class="titles"><h2 id="dlgTitle">${esc(t("members"))}</h2></div>
       <button class="icon-btn" type="button" data-close aria-label="${esc(t("close"))}">×</button></div>
     <div class="tabs" role="tablist">
       <button type="button" role="tab" data-mtab="waiting" aria-selected="${tab === "waiting"}">${esc(t("waiting"))}<span class="badge${waiting.length ? " hot" : ""}">${waiting.length}</span></button>
@@ -972,7 +1187,8 @@ document.addEventListener("click", (ev) => {
   if (D.mtab) { st.membersTab = D.mtab; renderMembers(); return; }
   if (D.setrole) { setRole(D.setrole, D.r, b); return; }
   if (D.plan !== undefined) { openForm(null, st.sel >= todayS() ? st.sel : todayS()); return; }
-  if (D.open) { openDetail(D.open); return; }
+  if (D.goto) { location.hash = D.goto; return; }
+  if (D.open) { openDetail(D.open); if (D.goTab) { st.tab = D.goTab; openDetail(D.open); } return; }
   if (D.new !== undefined) { openForm(null, D.new || todayS(), D.prefill); return; }
   if (D.edit) { openForm(D.edit, null, null, D.focusSlots !== undefined); return; }
   if (D.del) { st.confirmDel = true; openDetail(D.del); return; }
@@ -1014,19 +1230,32 @@ document.addEventListener("input", (ev) => {
   if (el.id === "guestN" && st.openId) setGuests(st.openId, Math.max(0, Math.min(20, Number(el.value) || 0)));
 });
 document.addEventListener("keydown", (ev) => { if (ev.key === "Escape" && st.menuOpen) { st.menuOpen = false; render(); } });
-dlg.addEventListener("close", () => { st.openId = null; st.form = null; st.confirmDel = false; st.dlgMode = null; });
+// The browser can deliver "close" late; if something was reopened meanwhile, keep its state.
+dlg.addEventListener("close", () => { if (dlg.open) return; st.openId = null; st.form = null; st.confirmDel = false; st.dlgMode = null; });
 dlg.addEventListener("click", (ev) => { if (ev.target === dlg) dlg.close(); });
 window.addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); st.installEvt = e; if (st.screen === "app") render(); });
 window.addEventListener("appinstalled", () => { st.installEvt = null; render(); });
 window.addEventListener("online", () => { if (st.screen === "app") loadAll(); });
+window.addEventListener("hashchange", () => {
+  const m = /^#(dashboard|events)$/.exec(location.hash); if (!m) return;
+  st.view = m[1];
+  if (st.screen === "app") { if (dlg.open) dlg.close(); render(); window.scrollTo(0, 0); }
+});
 document.addEventListener("visibilitychange", () => { if (!document.hidden && st.screen === "app") scheduleReload(); });
 
 let tt;
-function toast(m) { const el = $("#toast"); el.textContent = m; el.classList.add("show"); clearTimeout(tt); tt = setTimeout(() => el.classList.remove("show"), 3400); }
+// Shown as a "popover" where supported, so it sits above an open dialog instead of behind its dimmed backdrop.
+const popOn = (el, on) => { if (!el.showPopover) return; try { if (el.matches(":popover-open")) el.hidePopover(); if (on) el.showPopover(); } catch (e) {} };
+function toast(m) {
+  const el = $("#toast"); el.textContent = m; popOn(el, true); el.classList.add("show");
+  clearTimeout(tt); tt = setTimeout(() => { el.classList.remove("show"); popOn(el, false); }, 3400);
+}
 
 /* ================= boot ================= */
+takeUrlError();
 render();
 if (sb) {
+  checkProviders();
   let last = null;
   sb.auth.onAuthStateChange((event, session) => {
     // Avoid re-routing on silent token refreshes.
