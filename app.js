@@ -84,7 +84,7 @@ const S = {
     account: "Account",
     setupTitle: "Almost ready",
     setupBody: "Add your Supabase project URL and key to config.js to finish setup. README.md walks through it.",
-    googleOff: "Google sign-in isn't switched on yet. Please use the email code for now.",
+    googleOff: "Google sign-in isn't switched on yet. Please sign in with your email for now.",
     skip: "Skip to content", mainNav: "Main", vDash: "Dashboard", vEvents: "Events",
     // dashboard (admins)
     dashTitle: "Dashboard", dashSub: "Everything that needs your attention, at a glance.",
@@ -181,7 +181,7 @@ const S = {
     account: "கணக்கு",
     setupTitle: "கிட்டத்தட்ட தயார்",
     setupBody: "அமைப்பை முடிக்க config.js-இல் உங்கள் Supabase விவரங்களைச் சேர்க்கவும். README.md-இல் வழிமுறைகள் உள்ளன.",
-    googleOff: "Google மூலம் உள்நுழைவு இன்னும் இயக்கப்படவில்லை. இப்போதைக்கு மின்னஞ்சல் குறியீட்டைப் பயன்படுத்தவும்.",
+    googleOff: "Google மூலம் உள்நுழைவு இன்னும் இயக்கப்படவில்லை. இப்போதைக்கு மின்னஞ்சல் மூலம் உள்நுழையவும்.",
     skip: "உள்ளடக்கத்துக்குச் செல்", mainNav: "முதன்மை", vDash: "கட்டுப்பாட்டுப் பலகை", vEvents: "நிகழ்வுகள்",
     dashTitle: "கட்டுப்பாட்டுப் பலகை", dashSub: "கவனிக்க வேண்டிய அனைத்தும் ஒரே பார்வையில்.",
     sUpcoming: "வரவிருக்கும் நிகழ்வுகள்", sUpcomingSub: "அடுத்த 30 நாட்களில் {n}",
@@ -560,7 +560,8 @@ function authHTML() {
       <p class="fine"><button class="linkish" type="button" id="resendBtn" data-resend>${esc(t("resend"))}</button></p>
       <p class="fine"><button class="linkish" type="button" data-auth-back>${esc(t("useDifferent"))}</button></p>`;
   } else {
-    const google = st.googleOn === false ? "" : `<button class="btn wide" type="button" data-google ${a.busy ? "disabled" : ""}>${GMARK}${esc(t("google"))}</button>
+    // Always shown; if Google isn't switched on in Supabase yet, clicking it explains that instead of failing.
+    const google = `<button class="btn wide" type="button" data-google ${a.busy ? "disabled" : ""}>${GMARK}${esc(t("google"))}</button>
       <div class="divider">${esc(t("or"))}</div>`;
     panel = `<h1 id="authTitle">${esc(t("signInTitle"))}</h1><p class="hint">${esc(t("signInSub"))}</p>
       ${google}

@@ -163,7 +163,7 @@ These rules are enforced by the database itself, so they hold even if someone ta
 |---|---|
 | "Almost ready" screen | `config.js` still has the placeholders. Redo step 3. |
 | Sign-in code email never arrives | Check spam. If several people signed in recently, you've hit the built-in email limit; set up custom SMTP (step 6). |
-| No "Continue with Google" button | Google isn't switched on in Supabase yet; the app hides the button until it is. Do step 7. |
+| "Google sign-in isn't switched on yet" | Google isn't switched on in Supabase yet. Do step 7. |
 | Google sign-in shows an error about redirect URI | The redirect URI in Google Cloud must exactly match `https://YOUR-PROJECT.supabase.co/auth/v1/callback`. |
 | Google sign-in goes back to the login screen | Check the Site URL and Redirect URLs in step 5 match your Vercel address. |
 | Signed in but stuck on "waiting for approval" | An admin needs to approve you. If you're the owner, see step 8. |
