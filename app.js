@@ -58,9 +58,11 @@ const S = {
     google: "Continue with Google", or: "or",
     yourName: "Your name", nameHint: "New members: this is how others will see you.",
     email: "Email", sendCode: "Email me a sign-in link",
-    checkInbox: "We sent a sign-in email to {e}.",
+    checkInbox: "We sent a sign-in link to {e}.", checkTitle: "Check your email",
+    step1: "Open the email on this phone or computer.", step2: "Tap the Sign in link. That's it!",
+    spamHint: "Can't find it? Look in Spam or Promotions, or send another one.", haveCode: "Got a code instead?",
     enterCode: "Open the email on this device and tap the Sign in link. If your email shows a code instead, type it below.",
-    code: "Code (only if your email has one)", verify: "Sign in with code", useDifferent: "Use a different email",
+    code: "Sign-in code", verify: "Sign in with code", useDifferent: "Use a different email",
     resend: "Send another email", resendIn: "You can send another email in {n}s",
     badEmail: "Enter a valid email address.", badCode: "That code didn't work. Check it, or send a new one.",
     authFail: "Sign-in didn't go through: {m}",
@@ -157,9 +159,11 @@ const S = {
     google: "Google மூலம் தொடரவும்", or: "அல்லது",
     yourName: "உங்கள் பெயர்", nameHint: "புதிய உறுப்பினர்கள்: மற்றவர்களுக்கு இப்படித் தெரிவீர்கள்.",
     email: "மின்னஞ்சல்", sendCode: "உள்நுழைவு இணைப்பை மின்னஞ்சலில் அனுப்பு",
-    checkInbox: "{e} முகவரிக்கு உள்நுழைவு மின்னஞ்சல் அனுப்பியுள்ளோம்.",
+    checkInbox: "{e} முகவரிக்கு உள்நுழைவு இணைப்பை அனுப்பியுள்ளோம்.", checkTitle: "மின்னஞ்சலைப் பாருங்கள்",
+    step1: "இந்தத் தொலைபேசி அல்லது கணினியில் மின்னஞ்சலைத் திறக்கவும்.", step2: "Sign in இணைப்பைத் தட்டவும். அவ்வளவுதான்!",
+    spamHint: "கிடைக்கவில்லையா? Spam அல்லது Promotions-இல் பாருங்கள், அல்லது மீண்டும் அனுப்புங்கள்.", haveCode: "குறியீடு வந்ததா?",
     enterCode: "இந்தச் சாதனத்தில் மின்னஞ்சலைத் திறந்து Sign in இணைப்பைத் தட்டவும். மின்னஞ்சலில் குறியீடு இருந்தால், அதைக் கீழே உள்ளிடவும்.",
-    code: "குறியீடு (மின்னஞ்சலில் இருந்தால் மட்டும்)", verify: "குறியீட்டுடன் உள்நுழை", useDifferent: "வேறு மின்னஞ்சலைப் பயன்படுத்து",
+    code: "உள்நுழைவுக் குறியீடு", verify: "குறியீட்டுடன் உள்நுழை", useDifferent: "வேறு மின்னஞ்சலைப் பயன்படுத்து",
     resend: "மீண்டும் மின்னஞ்சல் அனுப்பு", resendIn: "{n} வினாடிகளில் மீண்டும் அனுப்பலாம்",
     badEmail: "சரியான மின்னஞ்சல் முகவரியை உள்ளிடவும்.", badCode: "அந்தக் குறியீடு வேலை செய்யவில்லை. சரிபார்க்கவும் அல்லது புதியதை அனுப்பவும்.",
     authFail: "உள்நுழைவு நடக்கவில்லை: {m}",
@@ -509,6 +513,7 @@ const ICONS = {
   heart: '<path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z"/>',
   draft: '<path d="M4 20h4L19.5 8.5l-4-4L4 16z"/>',
   star: '<path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"/>',
+  mail: '<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/>',
   ticket: '<path d="M3 8a2 2 0 0 0 0 4v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 1 0-4V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z"/><path d="M14 4v16"/>'
 };
 const ic = (n) => `<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${ICONS[n] || ""}</svg>`;
@@ -550,13 +555,19 @@ function authHTML() {
   const a = st.auth;
   let panel;
   if (a.step === "code") {
-    panel = `<h1 id="authTitle">${esc(t("signInTitle"))}</h1>
-      <p>${esc(t("checkInbox", { e: a.email }))}</p><p class="hint">${esc(t("enterCode"))}</p>
-      <form id="codeForm" novalidate>
-        <label>${esc(t("code"))}<input id="authCode" name="code" class="code" inputmode="numeric" autocomplete="one-time-code" maxlength="10" required></label>
-        ${a.error ? `<p class="err" role="alert">${esc(a.error)}</p>` : ""}
-        <button class="btn primary wide" type="submit" ${a.busy ? "disabled" : ""}>${esc(t("verify"))}</button>
-      </form>
+    // Supabase's free email sender only sends a link, so the screen is about the link.
+    // A code box stays tucked away for when a custom email sender adds codes to the email.
+    panel = `<div class="mail-ic" aria-hidden="true">${ic("mail")}</div>
+      <h1 id="authTitle">${esc(t("checkTitle"))}</h1>
+      <p>${esc(t("checkInbox", { e: a.email }))}</p>
+      <ol class="steps"><li>${esc(t("step1"))}</li><li>${esc(t("step2"))}</li></ol>
+      <p class="hint">${esc(t("spamHint"))}</p>
+      <details class="code-alt"${a.error ? " open" : ""}><summary>${esc(t("haveCode"))}</summary>
+        <form id="codeForm" novalidate>
+          <label>${esc(t("code"))}<input id="authCode" name="code" class="code" inputmode="numeric" autocomplete="one-time-code" maxlength="10" required></label>
+          ${a.error ? `<p class="err" role="alert">${esc(a.error)}</p>` : ""}
+          <button class="btn wide" type="submit" ${a.busy ? "disabled" : ""}>${esc(t("verify"))}</button>
+        </form></details>
       <p class="fine"><button class="linkish" type="button" id="resendBtn" data-resend>${esc(t("resend"))}</button></p>
       <p class="fine"><button class="linkish" type="button" data-auth-back>${esc(t("useDifferent"))}</button></p>`;
   } else {
