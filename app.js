@@ -108,7 +108,7 @@ const S = {
     viewCal: "View calendar", viewArrow: "View →",
     evTable: "Events", searchEvents: "Search events or venues", searchAtt: "Search", filterBy: "Filter",
     showing: "{a}–{b} of {n}", pageN: "Page {a} of {b}", prevPage: "Previous page", nextPage: "Next page",
-    fAll: "All", fPeople: "Approvals", fVol: "Volunteers", fCheck: "Checklists", fDate: "Dates", fDraft: "Drafts",
+    cAll: "All", cPeople: "Approvals", cVol: "Volunteers", cCheck: "Checklists", cDate: "Dates", cDraft: "Drafts",
     showWhen: "Which dates", wUpcoming: "Upcoming", wPast: "Past", wAll: "All dates", sAll: "Any status",
     sortBy: "Sort by", noMatch: "Nothing matches your search or filters.", clearFilters: "Clear filters"
   },
@@ -210,7 +210,7 @@ const S = {
     viewCal: "நாட்காட்டியைப் பார்", viewArrow: "பார் →",
     evTable: "நிகழ்வுகள்", searchEvents: "நிகழ்வு அல்லது இடத்தைத் தேடு", searchAtt: "தேடு", filterBy: "வடிகட்டு",
     showing: "{n}-இல் {a}–{b}", pageN: "பக்கம் {a} / {b}", prevPage: "முந்தைய பக்கம்", nextPage: "அடுத்த பக்கம்",
-    fAll: "அனைத்தும்", fPeople: "அனுமதிகள்", fVol: "தன்னார்வலர்கள்", fCheck: "பணிப் பட்டியல்கள்", fDate: "தேதிகள்", fDraft: "வரைவுகள்",
+    cAll: "அனைத்தும்", cPeople: "அனுமதிகள்", cVol: "தன்னார்வலர்கள்", cCheck: "பணிப் பட்டியல்கள்", cDate: "தேதிகள்", cDraft: "வரைவுகள்",
     showWhen: "எந்தத் தேதிகள்", wUpcoming: "வரவிருப்பவை", wPast: "முடிந்தவை", wAll: "அனைத்துத் தேதிகளும்", sAll: "எந்த நிலையும்",
     sortBy: "வரிசைப்படுத்து", noMatch: "உங்கள் தேடலுக்கு எதுவும் பொருந்தவில்லை.", clearFilters: "வடிகட்டிகளை நீக்கு"
   }
@@ -786,7 +786,7 @@ const ATT_KIND = { users: "people", heart: "vol", list: "check", draft: "draft",
 function attentionHTML(att) {
   const g = st.grid.att;
   const items = att.map((a) => ({ ...a, kind: ATT_KIND[a.icon] || "other" }));
-  const kinds = [["all", "fAll"], ["people", "fPeople"], ["vol", "fVol"], ["check", "fCheck"], ["date", "fDate"], ["draft", "fDraft"]]
+  const kinds = [["all", "cAll"], ["people", "cPeople"], ["vol", "cVol"], ["check", "cCheck"], ["date", "cDate"], ["draft", "cDraft"]]
     .map(([k, l]) => ({ k, l, n: k === "all" ? items.length : items.filter((i) => i.kind === k).length }))
     .filter((c) => c.k === "all" || c.n);
   if (g.kind !== "all" && !kinds.some((c) => c.k === g.kind)) g.kind = "all";
