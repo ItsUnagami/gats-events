@@ -456,3 +456,13 @@ dialog::backdrop{background:rgba(20,8,14,.45)}
   .grid-card .dt tbody tr:nth-child(even),.grid-card .dt tbody tr:hover{background:none}
   .pager{justify-content:center}
 }
+
+/* clickable stat cards */
+.stat-go{margin-top:auto;font-size:.82rem;font-weight:600;color:var(--accent);opacity:.75}
+button.stat:hover .stat-go,button.stat:focus-visible .stat-go{opacity:1}
+.stat.teal .stat-go{color:var(--teal)}
+.stat.gold .stat-go{color:var(--gold)}
+button.stat{cursor:pointer}
+.card.flash{animation:cardflash 1.6s ease-out}
+@keyframes cardflash{0%{box-shadow:0 0 0 0 var(--accent)}20%{box-shadow:0 0 0 4px var(--accent)}100%{box-shadow:0 0 0 0 transparent}}
+@media (prefers-reduced-motion:reduce){.card.flash{animation:none;outline:3px solid var(--accent)}}

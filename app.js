@@ -105,7 +105,7 @@ const S = {
     colVol: "Volunteers", colCheck: "Checklist", colStatus: "Status", published2: "Published",
     team: "Members", manage: "Manage members", rOwner: "Owner", rAdmins: "Admins", rMembers: "Members",
     rWaiting: "Waiting", rRemoved: "Removed", festNext: "Next festival", festNone: "No festivals coming up.",
-    viewCal: "View calendar",
+    viewCal: "View calendar", viewArrow: "View →",
     evTable: "Events", searchEvents: "Search events or venues", searchAtt: "Search", filterBy: "Filter",
     showing: "{a}–{b} of {n}", pageN: "Page {a} of {b}", prevPage: "Previous page", nextPage: "Next page",
     fAll: "All", fPeople: "Approvals", fVol: "Volunteers", fCheck: "Checklists", fDate: "Dates", fDraft: "Drafts",
@@ -207,7 +207,7 @@ const S = {
     colVol: "தன்னார்வலர்கள்", colCheck: "பணிகள்", colStatus: "நிலை", published2: "வெளியிடப்பட்டது",
     team: "உறுப்பினர்கள்", manage: "உறுப்பினர்களை நிர்வகி", rOwner: "உரிமையாளர்", rAdmins: "நிர்வாகிகள்", rMembers: "உறுப்பினர்கள்",
     rWaiting: "காத்திருப்பவர்கள்", rRemoved: "நீக்கப்பட்டவர்கள்", festNext: "அடுத்த பண்டிகை", festNone: "வரவிருக்கும் பண்டிகைகள் இல்லை.",
-    viewCal: "நாட்காட்டியைப் பார்",
+    viewCal: "நாட்காட்டியைப் பார்", viewArrow: "பார் →",
     evTable: "நிகழ்வுகள்", searchEvents: "நிகழ்வு அல்லது இடத்தைத் தேடு", searchAtt: "தேடு", filterBy: "வடிகட்டு",
     showing: "{n}-இல் {a}–{b}", pageN: "பக்கம் {a} / {b}", prevPage: "முந்தைய பக்கம்", nextPage: "அடுத்த பக்கம்",
     fAll: "அனைத்தும்", fPeople: "அனுமதிகள்", fVol: "தன்னார்வலர்கள்", fCheck: "பணிப் பட்டியல்கள்", fDate: "தேதிகள்", fDraft: "வரைவுகள்",
@@ -719,7 +719,7 @@ function statCard(o) {
     <span class="stat-top"><span class="stat-ic">${ic(o.icon)}</span><span class="stat-label">${esc(o.label)}</span></span>
     <span class="stat-value">${esc(o.value)}</span>
     ${o.pct != null ? meter(o.pct) : ""}
-    <span class="stat-sub">${esc(o.sub)}</span></${tag}>`;
+    <span class="stat-sub">${esc(o.sub)}</span>${o.act ? `<span class="stat-go" aria-hidden="true">${esc(t("viewArrow"))}</span>` : ""}</${tag}>`;
 }
 function attentionItems(S) {
   const out = [], soon = ymd(new Date(Date.now() + 21 * 864e5));
@@ -764,6 +764,22 @@ function pagerHTML(key, p) {
 }
 const searchBox = (key, ph) => `<label class="grid-search">${ic("search")}<input id="q-${key}" type="search" data-grid-q="${key}" value="${esc(st.grid[key].q)}" placeholder="${esc(ph)}" aria-label="${esc(ph)}" autocomplete="off"></label>`;
 const noMatchHTML = (key) => `<div class="no-match"><p>${esc(t("noMatch"))}</p><button class="btn sm" type="button" id="clr-${key}" data-grid-clear="${key}">${esc(t("clearFilters"))}</button></div>`;
+
+/* Stat cards jump to the grid row that explains the number. */
+function openStat(k) {
+  const a = st.grid.att, e = st.grid.ev;
+  if (k === "drafts") Object.assign(e, { q: "", page: 0, when: "all", status: "draft", sort: "date", dir: 1 });
+  if (k === "going") Object.assign(e, { q: "", page: 0, when: "upcoming", status: "all", sort: "going", dir: -1 });
+  if (k === "vol") Object.assign(a, { q: "", page: 0, kind: "vol" });
+  if (k === "tasks") Object.assign(a, { q: "", page: 0, kind: "check" });
+  render();
+  const id = k === "vol" || k === "tasks" ? "attH" : "evH";
+  const card = document.getElementById(id)?.closest("section");
+  if (!card) return;
+  card.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+  card.classList.remove("flash"); void card.offsetWidth; card.classList.add("flash");
+  setTimeout(() => card.classList.remove("flash"), 1600);
+}
 
 /* Needs attention */
 const ATT_KIND = { users: "people", heart: "vol", list: "check", draft: "draft", clock: "date" };
@@ -843,10 +859,10 @@ function dashboardHTML() {
   const active = S.r.owner + S.r.admin + S.r.member;
   const stats = [
     { icon: "calendar", label: t("sUpcoming"), value: S.pub.length, sub: t("sUpcomingSub", { n: S.soon }), act: 'data-goto="events"' },
-    { icon: "draft", label: t("sDrafts"), value: S.drafts.length, sub: t("sDraftsSub") },
-    { icon: "ticket", label: t("sGoing"), value: S.going, sub: t("sGoingSub", { n: S.maybe }), tone: "teal" },
-    { icon: "heart", label: t("sVol"), value: S.need ? `${S.filled}/${S.need}` : "0", pct: S.need ? pctOf(S.filled, S.need) : null, sub: S.need ? t("sVolSub", { n: S.need - S.filled }) : t("sVolNone"), tone: S.need > S.filled ? "gold" : "" },
-    { icon: "list", label: t("sTasks"), value: S.tasks ? `${S.done}/${S.tasks}` : "0", pct: S.tasks ? pctOf(S.done, S.tasks) : null, sub: S.tasks ? t("sTasksSub") : t("sTasksNone") },
+    { icon: "draft", label: t("sDrafts"), value: S.drafts.length, sub: t("sDraftsSub"), act: 'data-stat="drafts"' },
+    { icon: "ticket", label: t("sGoing"), value: S.going, sub: t("sGoingSub", { n: S.maybe }), tone: "teal", act: 'data-stat="going"' },
+    { icon: "heart", label: t("sVol"), value: S.need ? `${S.filled}/${S.need}` : "0", pct: S.need ? pctOf(S.filled, S.need) : null, sub: S.need ? t("sVolSub", { n: S.need - S.filled }) : t("sVolNone"), tone: S.need > S.filled ? "gold" : "", act: 'data-stat="vol"' },
+    { icon: "list", label: t("sTasks"), value: S.tasks ? `${S.done}/${S.tasks}` : "0", pct: S.tasks ? pctOf(S.done, S.tasks) : null, sub: S.tasks ? t("sTasksSub") : t("sTasksNone"), act: 'data-stat="tasks"' },
     { icon: "users", label: t("sMembers"), value: active, sub: S.r.pending ? t("sMembersSub", { n: S.r.pending }) : t("sMembersNone"), tone: S.r.pending ? "hot" : "", act: "data-members" }
   ];
   const roles = [["rOwner", S.r.owner], ["rAdmins", S.r.admin], ["rMembers", S.r.member], ["rWaiting", S.r.pending], ["rRemoved", S.r.blocked]];
@@ -1290,6 +1306,7 @@ document.addEventListener("click", (ev) => {
   if (D.setrole) { setRole(D.setrole, D.r, b); return; }
   if (D.plan !== undefined) { openForm(null, st.sel >= todayS() ? st.sel : todayS()); return; }
   if (D.goto) { location.hash = D.goto; return; }
+  if (D.stat) { openStat(D.stat); return; }
   if (D.pg) { st.grid[D.pg].page += Number(D.d); render(); return; }
   if (D.sort) { const g = st.grid.ev; if (g.sort === D.sort) g.dir *= -1; else { g.sort = D.sort; g.dir = DESC_FIRST.includes(D.sort) ? -1 : 1; } g.page = 0; render(); return; }
   if (D.attKind) { st.grid.att.kind = D.attKind; st.grid.att.page = 0; render(); return; }
