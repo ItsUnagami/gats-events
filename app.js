@@ -55,7 +55,6 @@ const S = {
     // sign-in
     signInTitle: "Sign in to GATS Events",
     signInSub: "Events, RSVPs and volunteering for the Greater Atlanta Tamil Sangam.",
-    google: "Continue with Google", or: "or",
     yourName: "Your name", nameHint: "New members: this is how others will see you.",
     email: "Email", sendCode: "Email me a sign-in link",
     checkInbox: "We sent a sign-in link to {e}.", checkTitle: "Check your email",
@@ -86,7 +85,6 @@ const S = {
     account: "Account",
     setupTitle: "Almost ready",
     setupBody: "Add your Supabase project URL and key to config.js to finish setup. README.md walks through it.",
-    googleOff: "Google sign-in isn't switched on yet. Please sign in with your email for now.",
     skip: "Skip to content", mainNav: "Main", vDash: "Dashboard", vEvents: "Events",
     // dashboard (admins)
     dashTitle: "Dashboard", dashSub: "Everything that needs your attention, at a glance.",
@@ -161,7 +159,6 @@ const S = {
     cat: { celebration: "கொண்டாட்டம்", cultural: "கலை நிகழ்ச்சி", school: "தமிழ்ப் பள்ளி", sports: "விளையாட்டு", meeting: "கூட்டம்", volunteer: "தன்னார்வப் பணி", festival: "பண்டிகை", other: "மற்றவை" },
     signInTitle: "GATS நிகழ்வுகளில் உள்நுழையவும்",
     signInSub: "கிரேட்டர் அட்லாண்டா தமிழ்ச் சங்கத்தின் நிகழ்வுகள், பதில்கள், தன்னார்வப் பணிகள்.",
-    google: "Google மூலம் தொடரவும்", or: "அல்லது",
     yourName: "உங்கள் பெயர்", nameHint: "புதிய உறுப்பினர்கள்: மற்றவர்களுக்கு இப்படித் தெரிவீர்கள்.",
     email: "மின்னஞ்சல்", sendCode: "உள்நுழைவு இணைப்பை மின்னஞ்சலில் அனுப்பு",
     checkInbox: "{e} முகவரிக்கு உள்நுழைவு இணைப்பை அனுப்பியுள்ளோம்.", checkTitle: "மின்னஞ்சலைப் பாருங்கள்",
@@ -190,7 +187,6 @@ const S = {
     account: "கணக்கு",
     setupTitle: "கிட்டத்தட்ட தயார்",
     setupBody: "அமைப்பை முடிக்க config.js-இல் உங்கள் Supabase விவரங்களைச் சேர்க்கவும். README.md-இல் வழிமுறைகள் உள்ளன.",
-    googleOff: "Google மூலம் உள்நுழைவு இன்னும் இயக்கப்படவில்லை. இப்போதைக்கு மின்னஞ்சல் மூலம் உள்நுழையவும்.",
     skip: "உள்ளடக்கத்துக்குச் செல்", mainNav: "முதன்மை", vDash: "கட்டுப்பாட்டுப் பலகை", vEvents: "நிகழ்வுகள்",
     dashTitle: "கட்டுப்பாட்டுப் பலகை", dashSub: "கவனிக்க வேண்டிய அனைத்தும் ஒரே பார்வையில்.",
     sUpcoming: "வரவிருக்கும் நிகழ்வுகள்", sUpcomingSub: "அடுத்த 30 நாட்களில் {n}",
@@ -244,7 +240,6 @@ const st = {
   menuOpen: false,
   auth: { step: "start", email: "", name: "", error: "", busy: false, resendAt: 0 },
   view: /^#(dashboard|events)$/.test(location.hash) ? location.hash.slice(1) : null,
-  googleOn: null, // null = not checked yet, true/false once Supabase has told us
   installEvt: null, installDismissed: store.get("gats-install-dismissed") === "1"
 };
 
@@ -467,34 +462,13 @@ async function verifyCode() {
   if (error) { a.error = t("badCode"); render(); $("#authCode")?.focus(); }
   // success is picked up by onAuthStateChange
 }
-/* Ask Supabase which sign-in methods are switched on, so the Google button
-   only shows when it will work (instead of sending people to an error page). */
-async function checkProviders() {
-  try {
-    const r = await fetch(CFG.supabaseUrl + "/auth/v1/settings", { headers: { apikey: CFG.supabaseAnonKey } });
-    if (!r.ok) return;
-    const j = await r.json();
-    st.googleOn = !!(j && j.external && j.external.google);
-    if (st.screen === "auth") render();
-  } catch (e) { /* offline: leave the button visible */ }
-}
-/* Errors Supabase sends back in the address after a failed Google sign-in. */
+/* Errors Supabase sends back in the address, e.g. an expired or already-used sign-in link. */
 function takeUrlError() {
   const p = new URLSearchParams(location.search.slice(1) + "&" + location.hash.slice(1));
   const m = p.get("error_description") || p.get("error");
   if (!m) return;
   st.auth.error = t("authFail", { m });
   history.replaceState(null, "", location.pathname);
-}
-async function signInGoogle() {
-  if (st.googleOn === false) { st.auth.error = t("googleOff"); render(); return; }
-  st.auth.busy = true; st.auth.error = ""; render();
-  const { error } = await sb.auth.signInWithOAuth({ provider: "google", options: { redirectTo: location.origin + "/" } });
-  if (error) {
-    st.auth.busy = false;
-    st.auth.error = /provider is not enabled/i.test(error.message) ? t("googleOff") : t("authFail", { m: error.message });
-    render();
-  }
 }
 async function signOut() {
   st.menuOpen = false;
@@ -510,7 +484,6 @@ const KOLAM = `<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
 <g fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20 7 Q33 7 33 20 Q33 33 20 33 Q7 33 7 20 Q7 7 20 7Z"/>
 <path d="M0 13 Q13 13 13 0 M40 13 Q27 13 27 0 M0 27 Q13 27 13 40 M40 27 Q27 27 27 40"/></g>
 </pattern></defs><rect width="100%" height="100%" fill="url(#kolam)"/></svg>`;
-const GMARK = `<svg class="gmark" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>`;
 /* simple line icons (decorative: the text next to them carries the meaning) */
 const ICONS = {
   chart: '<path d="M4 20V11M10 20V5M16 20v-6M21 20H3"/>',
@@ -586,11 +559,7 @@ function authHTML() {
       <p class="fine"><button class="linkish" type="button" id="resendBtn" data-resend>${esc(t("resend"))}</button></p>
       <p class="fine"><button class="linkish" type="button" data-auth-back>${esc(t("useDifferent"))}</button></p>`;
   } else {
-    // Always shown; if Google isn't switched on in Supabase yet, clicking it explains that instead of failing.
-    const google = `<button class="btn wide" type="button" data-google ${a.busy ? "disabled" : ""}>${GMARK}${esc(t("google"))}</button>
-      <div class="divider">${esc(t("or"))}</div>`;
     panel = `<h1 id="authTitle">${esc(t("signInTitle"))}</h1><p class="hint">${esc(t("signInSub"))}</p>
-      ${google}
       <form id="emailForm" novalidate>
         <label>${esc(t("email"))}<input id="authEmail" name="email" type="email" autocomplete="email" value="${esc(a.email)}" required></label>
         <label>${esc(t("yourName"))}<input id="authName" name="name" autocomplete="name" maxlength="80" value="${esc(a.name)}"><span class="fine" style="font-weight:400">${esc(t("nameHint"))}</span></label>
@@ -1294,7 +1263,6 @@ document.addEventListener("click", (ev) => {
   const D = b.dataset;
   if (D.lang) { st.lang = D.lang; store.set("gats-lang", st.lang); refresh(true); if (dlg.open && st.dlgMode === "form") { /* keep form as-is */ } return; }
   if (D.menu !== undefined) { st.menuOpen = !st.menuOpen; render(); return; }
-  if (D.google !== undefined) { signInGoogle(); return; }
   if (D.resend !== undefined) { st.auth.step = "start"; sendCode(); return; }
   if (D.authBack !== undefined) { st.auth.step = "start"; st.auth.error = ""; render(); return; }
   if (D.checkAgain !== undefined) { fetchMe().then((me) => { if (me && me.role !== "pending") route(st.session); else toast(t("stillPending")); }).catch(() => toast(t("writeFail"))); return; }
@@ -1381,7 +1349,6 @@ function toast(m) {
 takeUrlError();
 render();
 if (sb) {
-  checkProviders();
   let last = null;
   sb.auth.onAuthStateChange((event, session) => {
     // Avoid re-routing on silent token refreshes.

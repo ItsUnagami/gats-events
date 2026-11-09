@@ -16,7 +16,7 @@ It runs on two free services: **Supabase** (sign-in and database) and **Vercel**
 
 ## Setup (about 45 minutes, once)
 
-Supabase and Google occasionally rename menu items. If a label below doesn't match exactly, look for the closest equivalent.
+Supabase occasionally renames menu items. If a label below doesn't match exactly, look for the closest equivalent.
 
 ### 1. Create the Supabase project
 
@@ -85,18 +85,7 @@ The app emails people a 6-digit code, which works reliably inside the installed 
 1. Create a free account at [resend.com](https://resend.com) (or Brevo, Postmark, etc.) and verify a domain or sending address.
 2. In Supabase, go to **Authentication → Emails → SMTP Settings**, enable custom SMTP, and paste in the details the email service gives you.
 
-Alternatively, encourage members to use **Continue with Google** (next step), which sends no email at all.
-
-### 7. Turn on Google sign-in (recommended)
-
-1. Go to [console.cloud.google.com](https://console.cloud.google.com) and create a project called `GATS Events`.
-2. Open **APIs & Services → OAuth consent screen**. Choose **External**, enter the app name `GATS Events` and a support email, and save. When done, click **Publish app** so anyone can sign in (not just test users).
-3. Open **APIs & Services → Credentials → Create credentials → OAuth client ID**. Choose **Web application**.
-4. Under **Authorized redirect URIs**, add `https://YOUR-PROJECT.supabase.co/auth/v1/callback` (use your real Supabase URL from step 3).
-5. Copy the **Client ID** and **Client secret**.
-6. In Supabase, go to **Authentication → Providers → Google**, turn it on, paste both values, and save.
-
-### 8. Sign in first, before sharing the link
+### 7. Sign in first, before sharing the link
 
 **The first person to sign in automatically becomes the owner.** Do this yourself right after deploying, before you share the address with anyone.
 
@@ -115,7 +104,7 @@ update public.profiles set role = 'member' where role = 'owner';
 update public.profiles set role = 'owner' where id = (select id from auth.users where email = 'you@example.com');
 ```
 
-### 9. Make your crew admins
+### 8. Make your crew admins
 
 Ask your crew to sign in. They'll appear under **Members → Waiting**. Approve them, then go to the **Members** tab and click **Make admin** next to each one. Only the owner can make or remove admins.
 
@@ -163,9 +152,5 @@ These rules are enforced by the database itself, so they hold even if someone ta
 |---|---|
 | "Almost ready" screen | `config.js` still has the placeholders. Redo step 3. |
 | Sign-in code email never arrives | Check spam. If several people signed in recently, you've hit the built-in email limit; set up custom SMTP (step 6). |
-| "Google sign-in isn't switched on yet" | Google isn't switched on in Supabase yet. Do step 7. |
-| Google sign-in shows an error about redirect URI | The redirect URI in Google Cloud must exactly match `https://YOUR-PROJECT.supabase.co/auth/v1/callback`. |
-| Google sign-in goes back to the login screen | Check the Site URL and Redirect URLs in step 5 match your Vercel address. |
-| Signed in but stuck on "waiting for approval" | An admin needs to approve you. If you're the owner, see step 8. |
+| Signed in but stuck on "waiting for approval" | An admin needs to approve you. If you're the owner, see step 7. |
 | Phone still shows the old version | Bump `VERSION` in `sw.js`, redeploy, then close and reopen the app. |
-| Google sign-in misbehaves inside the installed iPhone app | Use the email code instead; it works reliably in installed apps. |

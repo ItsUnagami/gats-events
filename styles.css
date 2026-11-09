@@ -111,7 +111,7 @@ main:focus{outline:none}
 .auth-panel input.code{font-size:1.4rem;letter-spacing:.3em;text-align:center;font-variant-numeric:tabular-nums}
 .divider{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:.86rem}
 .divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
-.gmark{width:18px;height:18px}
+
 .fine{font-size:.86rem;color:var(--muted)}
 .linkish{border:0;background:none;padding:0;color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:2px}
 .linkish:disabled{color:var(--muted);text-decoration:none;cursor:default}
