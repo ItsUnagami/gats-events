@@ -54,15 +54,20 @@ const S = {
     cat: { celebration: "Celebration", cultural: "Cultural program", school: "Tamil school", sports: "Sports", meeting: "Meeting", volunteer: "Volunteering", festival: "Festival", other: "Other" },
     // sign-in
     signInTitle: "Sign in to GATS Events",
-    signInSub: "Events, RSVPs and volunteering for the Greater Atlanta Tamil Sangam.",
+    signInSub: "Find volunteer jobs, RSVP and help run Greater Atlanta Tamil Sangam events.",
+    myVol: "Your volunteer jobs", helpNeeded: "Volunteers needed",
+    helpNeededSub: "Open jobs at upcoming events. Pick one and sign up.",
+    noOpenJobs: "Every volunteer job is filled. Thank you!",
+    spotsLeft: "{n} spots left", spotLeft1: "1 spot left", volunteerBtn: "Volunteer",
+    youVolunteer: "You're volunteering: {r}", moreJobs: "+{n} more open jobs. Open an event to see them.",
+    roster: "Signed up: {n}",
+    google: "Continue with Google", or: "or",
     yourName: "Your name", nameHint: "New members: this is how others will see you.",
-    email: "Email", sendCode: "Email me a sign-in link",
-    checkInbox: "We sent a sign-in link to {e}.", checkTitle: "Check your email",
-    step1: "Open the email on this phone or computer.", step2: "Tap the Sign in link. That's it!",
-    spamHint: "Can't find it? Look in Spam or Promotions, or send another one.", haveCode: "Got a code instead?",
-    enterCode: "Open the email on this device and tap the Sign in link. If your email shows a code instead, type it below.",
-    code: "Sign-in code", verify: "Sign in with code", useDifferent: "Use a different email",
-    resend: "Send another email", resendIn: "You can send another email in {n}s",
+    email: "Email", sendCode: "Email me a sign-in code",
+    checkInbox: "We sent a sign-in code to {e}.",
+    enterCode: "Enter the code from the email, or tap the link inside it on this device.",
+    code: "Sign-in code", verify: "Sign in", useDifferent: "Use a different email",
+    resend: "Send a new code", resendIn: "You can send a new code in {n}s",
     badEmail: "Enter a valid email address.", badCode: "That code didn't work. Check it, or send a new one.",
     authFail: "Sign-in didn't go through: {m}",
     approvalNote: "New accounts are approved by a GATS admin before they can see events.",
@@ -84,31 +89,7 @@ const S = {
     offline: "You're offline. Showing events saved {d}.",
     account: "Account",
     setupTitle: "Almost ready",
-    setupBody: "Add your Supabase project URL and key to config.js to finish setup. README.md walks through it.",
-    skip: "Skip to content", mainNav: "Main", vDash: "Dashboard", vEvents: "Events",
-    // dashboard (admins)
-    dashTitle: "Dashboard", dashSub: "Everything that needs your attention, at a glance.",
-    sUpcoming: "Upcoming events", sUpcomingSub: "{n} in the next 30 days",
-    sDrafts: "Drafts", sDraftsSub: "Only admins can see these",
-    sGoing: "People going", sGoingSub: "Including guests · {n} maybe",
-    sVol: "Volunteer spots filled", sVolSub: "{n} still open", sVolNone: "No volunteer roles yet",
-    sTasks: "Checklist tasks done", sTasksSub: "Across upcoming events", sTasksNone: "No checklists yet",
-    sMembers: "Active members", sMembersSub: "{n} waiting for approval", sMembersNone: "No one waiting",
-    attention: "Needs attention", allClear: "All caught up. Nothing needs attention right now.",
-    aPending: "{n} people waiting for approval", aPending1: "1 person waiting for approval",
-    aSpots: "{t}: {n} volunteer spots open", aSpots1: "{t}: 1 volunteer spot open",
-    aTasks: "{t}: checklist {a} of {b} done", aNoPlan: "{t}: no checklist yet", aTbc: "{t}: date still to confirm",
-    aDraft: "{t} is still a draft", open: "Open",
-    upTable: "Upcoming events", colDate: "Date", colEvent: "Event", colGoing: "Going", colMaybe: "Maybe",
-    colVol: "Volunteers", colCheck: "Checklist", colStatus: "Status", published2: "Published",
-    team: "Members", manage: "Manage members", rOwner: "Owner", rAdmins: "Admins", rMembers: "Members",
-    rWaiting: "Waiting", rRemoved: "Removed", festNext: "Next festival", festNone: "No festivals coming up.",
-    viewCal: "View calendar", viewArrow: "View →",
-    evTable: "Events", searchEvents: "Search events or venues", searchAtt: "Search", filterBy: "Filter",
-    showing: "{a}–{b} of {n}", pageN: "Page {a} of {b}", prevPage: "Previous page", nextPage: "Next page",
-    cAll: "All", cPeople: "Approvals", cVol: "Volunteers", cCheck: "Checklists", cDate: "Dates", cDraft: "Drafts",
-    showWhen: "Which dates", wUpcoming: "Upcoming", wPast: "Past", wAll: "All dates", sAll: "Any status",
-    sortBy: "Sort by", noMatch: "Nothing matches your search or filters.", clearFilters: "Clear filters"
+    setupBody: "Add your Supabase project URL and key to config.js to finish setup. README.md walks through it."
   },
   ta: {
     org: "GATS நிகழ்வுகள்", orgAlt: "கிரேட்டர் அட்லாண்டா தமிழ்ச் சங்கம்",
@@ -158,15 +139,20 @@ const S = {
     starterItems: ["அரங்கை முன்பதிவு செய்", "உணவு மற்றும் கேட்டரரை உறுதிசெய்", "உறுப்பினர்களுக்கு அறிவிப்பு அனுப்பு", "ஒலி மற்றும் மேடை ஏற்பாடு செய்", "தன்னார்வப் பணிகளை நிரப்பு", "அமைப்பு மற்றும் சுத்தம் திட்டமிடு"],
     cat: { celebration: "கொண்டாட்டம்", cultural: "கலை நிகழ்ச்சி", school: "தமிழ்ப் பள்ளி", sports: "விளையாட்டு", meeting: "கூட்டம்", volunteer: "தன்னார்வப் பணி", festival: "பண்டிகை", other: "மற்றவை" },
     signInTitle: "GATS நிகழ்வுகளில் உள்நுழையவும்",
-    signInSub: "கிரேட்டர் அட்லாண்டா தமிழ்ச் சங்கத்தின் நிகழ்வுகள், பதில்கள், தன்னார்வப் பணிகள்.",
+    signInSub: "தன்னார்வப் பணிகளைக் கண்டறியுங்கள், பதிலளியுங்கள், கிரேட்டர் அட்லாண்டா தமிழ்ச் சங்க நிகழ்வுகளை நடத்த உதவுங்கள்.",
+    myVol: "உங்கள் தன்னார்வப் பணிகள்", helpNeeded: "தன்னார்வலர்கள் தேவை",
+    helpNeededSub: "வரவிருக்கும் நிகழ்வுகளில் காலியான பணிகள். ஒன்றைத் தேர்ந்தெடுத்துப் பதிவு செய்யுங்கள்.",
+    noOpenJobs: "எல்லா தன்னார்வப் பணிகளும் நிரம்பிவிட்டன. நன்றி!",
+    spotsLeft: "{n} இடங்கள் மீதம்", spotLeft1: "1 இடம் மீதம்", volunteerBtn: "தன்னார்வலராகு",
+    youVolunteer: "நீங்கள் தன்னார்வலர்: {r}", moreJobs: "மேலும் {n} காலியான பணிகள். பார்க்க நிகழ்வைத் திறக்கவும்.",
+    roster: "பதிவு செய்தவர்கள்: {n}",
+    google: "Google மூலம் தொடரவும்", or: "அல்லது",
     yourName: "உங்கள் பெயர்", nameHint: "புதிய உறுப்பினர்கள்: மற்றவர்களுக்கு இப்படித் தெரிவீர்கள்.",
-    email: "மின்னஞ்சல்", sendCode: "உள்நுழைவு இணைப்பை மின்னஞ்சலில் அனுப்பு",
-    checkInbox: "{e} முகவரிக்கு உள்நுழைவு இணைப்பை அனுப்பியுள்ளோம்.", checkTitle: "மின்னஞ்சலைப் பாருங்கள்",
-    step1: "இந்தத் தொலைபேசி அல்லது கணினியில் மின்னஞ்சலைத் திறக்கவும்.", step2: "Sign in இணைப்பைத் தட்டவும். அவ்வளவுதான்!",
-    spamHint: "கிடைக்கவில்லையா? Spam அல்லது Promotions-இல் பாருங்கள், அல்லது மீண்டும் அனுப்புங்கள்.", haveCode: "குறியீடு வந்ததா?",
-    enterCode: "இந்தச் சாதனத்தில் மின்னஞ்சலைத் திறந்து Sign in இணைப்பைத் தட்டவும். மின்னஞ்சலில் குறியீடு இருந்தால், அதைக் கீழே உள்ளிடவும்.",
-    code: "உள்நுழைவுக் குறியீடு", verify: "குறியீட்டுடன் உள்நுழை", useDifferent: "வேறு மின்னஞ்சலைப் பயன்படுத்து",
-    resend: "மீண்டும் மின்னஞ்சல் அனுப்பு", resendIn: "{n} வினாடிகளில் மீண்டும் அனுப்பலாம்",
+    email: "மின்னஞ்சல்", sendCode: "உள்நுழைவுக் குறியீட்டை அனுப்பு",
+    checkInbox: "{e} முகவரிக்கு உள்நுழைவுக் குறியீடு அனுப்பியுள்ளோம்.",
+    enterCode: "மின்னஞ்சலில் உள்ள குறியீட்டை உள்ளிடவும், அல்லது இந்தச் சாதனத்தில் அதில் உள்ள இணைப்பைத் தட்டவும்.",
+    code: "உள்நுழைவுக் குறியீடு", verify: "உள்நுழை", useDifferent: "வேறு மின்னஞ்சலைப் பயன்படுத்து",
+    resend: "புதிய குறியீட்டை அனுப்பு", resendIn: "{n} வினாடிகளில் புதிய குறியீடு அனுப்பலாம்",
     badEmail: "சரியான மின்னஞ்சல் முகவரியை உள்ளிடவும்.", badCode: "அந்தக் குறியீடு வேலை செய்யவில்லை. சரிபார்க்கவும் அல்லது புதியதை அனுப்பவும்.",
     authFail: "உள்நுழைவு நடக்கவில்லை: {m}",
     approvalNote: "புதிய கணக்குகள் நிகழ்வுகளைக் காணும் முன் GATS நிர்வாகியால் அனுமதிக்கப்படும்.",
@@ -186,29 +172,7 @@ const S = {
     offline: "இணைப்பு இல்லை. {d} சேமித்த நிகழ்வுகள் காட்டப்படுகின்றன.",
     account: "கணக்கு",
     setupTitle: "கிட்டத்தட்ட தயார்",
-    setupBody: "அமைப்பை முடிக்க config.js-இல் உங்கள் Supabase விவரங்களைச் சேர்க்கவும். README.md-இல் வழிமுறைகள் உள்ளன.",
-    skip: "உள்ளடக்கத்துக்குச் செல்", mainNav: "முதன்மை", vDash: "கட்டுப்பாட்டுப் பலகை", vEvents: "நிகழ்வுகள்",
-    dashTitle: "கட்டுப்பாட்டுப் பலகை", dashSub: "கவனிக்க வேண்டிய அனைத்தும் ஒரே பார்வையில்.",
-    sUpcoming: "வரவிருக்கும் நிகழ்வுகள்", sUpcomingSub: "அடுத்த 30 நாட்களில் {n}",
-    sDrafts: "வரைவுகள்", sDraftsSub: "நிர்வாகிகள் மட்டுமே பார்க்க முடியும்",
-    sGoing: "வருபவர்கள்", sGoingSub: "விருந்தினர்கள் உட்பட · {n} பேர் ஒருவேளை",
-    sVol: "நிரப்பப்பட்ட தன்னார்வ இடங்கள்", sVolSub: "{n} இடங்கள் காலியாக உள்ளன", sVolNone: "இன்னும் தன்னார்வப் பணிகள் இல்லை",
-    sTasks: "முடிந்த பணிகள்", sTasksSub: "வரவிருக்கும் நிகழ்வுகளில்", sTasksNone: "இன்னும் பணிப் பட்டியல்கள் இல்லை",
-    sMembers: "செயலில் உள்ள உறுப்பினர்கள்", sMembersSub: "{n} பேர் அனுமதிக்காகக் காத்திருக்கிறார்கள்", sMembersNone: "யாரும் காத்திருக்கவில்லை",
-    attention: "கவனிக்க வேண்டியவை", allClear: "எல்லாம் சரியாக உள்ளது. இப்போது கவனிக்க எதுவும் இல்லை.",
-    aPending: "{n} பேர் அனுமதிக்காகக் காத்திருக்கிறார்கள்", aSpots: "{t}: {n} தன்னார்வ இடங்கள் காலி",
-    aTasks: "{t}: பணிகள் {b}-இல் {a} முடிந்தன", aNoPlan: "{t}: இன்னும் பணிப் பட்டியல் இல்லை", aTbc: "{t}: தேதி உறுதிசெய்யப்பட வேண்டும்",
-    aDraft: "{t} இன்னும் வரைவாக உள்ளது", open: "திற",
-    upTable: "வரவிருக்கும் நிகழ்வுகள்", colDate: "தேதி", colEvent: "நிகழ்வு", colGoing: "வருகிறார்கள்", colMaybe: "ஒருவேளை",
-    colVol: "தன்னார்வலர்கள்", colCheck: "பணிகள்", colStatus: "நிலை", published2: "வெளியிடப்பட்டது",
-    team: "உறுப்பினர்கள்", manage: "உறுப்பினர்களை நிர்வகி", rOwner: "உரிமையாளர்", rAdmins: "நிர்வாகிகள்", rMembers: "உறுப்பினர்கள்",
-    rWaiting: "காத்திருப்பவர்கள்", rRemoved: "நீக்கப்பட்டவர்கள்", festNext: "அடுத்த பண்டிகை", festNone: "வரவிருக்கும் பண்டிகைகள் இல்லை.",
-    viewCal: "நாட்காட்டியைப் பார்", viewArrow: "பார் →",
-    evTable: "நிகழ்வுகள்", searchEvents: "நிகழ்வு அல்லது இடத்தைத் தேடு", searchAtt: "தேடு", filterBy: "வடிகட்டு",
-    showing: "{n}-இல் {a}–{b}", pageN: "பக்கம் {a} / {b}", prevPage: "முந்தைய பக்கம்", nextPage: "அடுத்த பக்கம்",
-    cAll: "அனைத்தும்", cPeople: "அனுமதிகள்", cVol: "தன்னார்வலர்கள்", cCheck: "பணிப் பட்டியல்கள்", cDate: "தேதிகள்", cDraft: "வரைவுகள்",
-    showWhen: "எந்தத் தேதிகள்", wUpcoming: "வரவிருப்பவை", wPast: "முடிந்தவை", wAll: "அனைத்துத் தேதிகளும்", sAll: "எந்த நிலையும்",
-    sortBy: "வரிசைப்படுத்து", noMatch: "உங்கள் தேடலுக்கு எதுவும் பொருந்தவில்லை.", clearFilters: "வடிகட்டிகளை நீக்கு"
+    setupBody: "அமைப்பை முடிக்க config.js-இல் உங்கள் Supabase விவரங்களைச் சேர்க்கவும். README.md-இல் வழிமுறைகள் உள்ளன."
   }
 };
 const CATS = ["celebration", "cultural", "school", "sports", "meeting", "volunteer", "festival", "other"];
@@ -239,7 +203,6 @@ const st = {
   dlgMode: null, openId: null, tab: "overview", confirmDel: false, form: null, membersTab: "waiting",
   menuOpen: false,
   auth: { step: "start", email: "", name: "", error: "", busy: false, resendAt: 0 },
-  view: /^#(dashboard|events)$/.test(location.hash) ? location.hash.slice(1) : null,
   installEvt: null, installDismissed: store.get("gats-install-dismissed") === "1"
 };
 
@@ -462,13 +425,9 @@ async function verifyCode() {
   if (error) { a.error = t("badCode"); render(); $("#authCode")?.focus(); }
   // success is picked up by onAuthStateChange
 }
-/* Errors Supabase sends back in the address, e.g. an expired or already-used sign-in link. */
-function takeUrlError() {
-  const p = new URLSearchParams(location.search.slice(1) + "&" + location.hash.slice(1));
-  const m = p.get("error_description") || p.get("error");
-  if (!m) return;
-  st.auth.error = t("authFail", { m });
-  history.replaceState(null, "", location.pathname);
+async function signInGoogle() {
+  const { error } = await sb.auth.signInWithOAuth({ provider: "google", options: { redirectTo: location.origin + "/" } });
+  if (error) { st.auth.error = t("authFail", { m: error.message }); render(); }
 }
 async function signOut() {
   st.menuOpen = false;
@@ -484,119 +443,76 @@ const KOLAM = `<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
 <g fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20 7 Q33 7 33 20 Q33 33 20 33 Q7 33 7 20 Q7 7 20 7Z"/>
 <path d="M0 13 Q13 13 13 0 M40 13 Q27 13 27 0 M0 27 Q13 27 13 40 M40 27 Q27 27 27 40"/></g>
 </pattern></defs><rect width="100%" height="100%" fill="url(#kolam)"/></svg>`;
-/* simple line icons (decorative: the text next to them carries the meaning) */
-const ICONS = {
-  chart: '<path d="M4 20V11M10 20V5M16 20v-6M21 20H3"/>',
-  calendar: '<rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/>',
-  users: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.8c1.9.6 3.1 2.3 3.5 5.2"/>',
-  plus: '<path d="M12 5v14M5 12h14"/>',
-  check: '<path d="M4 12.5l5 5L20 6.5"/>',
-  list: '<path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/>',
-  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
-  heart: '<path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.3a4.3 4.3 0 0 1 7.5 2.5C19.5 15.4 12 20 12 20z"/>',
-  draft: '<path d="M4 20h4L19.5 8.5l-4-4L4 16z"/>',
-  star: '<path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9z"/>',
-  search: '<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>',
-  mail: '<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/>',
-  ticket: '<path d="M3 8a2 2 0 0 0 0 4v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4a2 2 0 0 1 0-4V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z"/><path d="M14 4v16"/>'
-};
-const ic = (n) => `<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${ICONS[n] || ""}</svg>`;
-const views = () => (isAdmin() ? ["dashboard", "events"] : ["events"]);
-const currentView = () => (views().includes(st.view) ? st.view : views()[0]);
-
+const GMARK = `<svg class="gmark" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>`;
 const langToggle = () => `<div class="lang" role="group" aria-label="Language">
   <button type="button" data-lang="en" aria-pressed="${st.lang === "en"}">EN</button>
   <button type="button" data-lang="ta" aria-pressed="${st.lang === "ta"}">தமிழ்</button></div>`;
 
-/* Name every form control after the text of the <label> around it, so screen readers
-   and AI agents see "Event name", not an anonymous text box. */
-function nameControls(root) {
-  for (const lab of root.querySelectorAll("label")) {
-    const ctl = lab.querySelector("input,select,textarea");
-    if (!ctl || ctl.hasAttribute("aria-label")) continue;
-    const txt = [...lab.childNodes].filter((n) => n.nodeType === 3).map((n) => n.textContent).join(" ").replace(/\s+/g, " ").trim();
-    if (txt) ctl.setAttribute("aria-label", txt);
-  }
-}
 function render() {
   document.documentElement.lang = st.lang === "ta" ? "ta" : "en";
   const app = $("#app");
-  // Keep focus (and the caret in a search box) across re-renders.
-  const ae = document.activeElement, fid = ae && ae.id && app.contains(ae) ? ae.id : null;
-  const caret = fid && typeof ae.selectionStart === "number" ? [ae.selectionStart, ae.selectionEnd] : null;
   if (st.screen === "setup") app.innerHTML = setupHTML();
   else if (st.screen === "loading") app.innerHTML = `<p class="boot">${esc(t("loading"))}</p>`;
   else if (st.screen === "auth") app.innerHTML = authHTML();
   else if (st.screen === "pending") app.innerHTML = gateHTML(t("pendingTitle", { n: st.me?.full_name || "" }).replace(/,\s*$/, ""), t("pendingBody"), true);
   else if (st.screen === "blocked") app.innerHTML = gateHTML(t("blockedTitle"), t("blockedBody") + (CFG.contactEmail ? " " + CFG.contactEmail : ""), false);
   else app.innerHTML = appHTML();
-  nameControls(app);
-  if (fid) { const n = document.getElementById(fid); if (n && !n.disabled) { n.focus({ preventScroll: true }); if (caret && n.setSelectionRange) try { n.setSelectionRange(caret[0], caret[1]); } catch (e) {} } }
 }
 
 function setupHTML() {
   return `<div class="auth"><div class="auth-art">${KOLAM}<b>GATS Events</b><span>Greater Atlanta Tamil Sangam</span></div>
-    <main class="auth-panel"><h1>${esc(t("setupTitle"))}</h1><p class="hint">${esc(t("setupBody"))}</p></main></div>`;
+    <div class="auth-panel"><h1>${esc(t("setupTitle"))}</h1><p class="hint">${esc(t("setupBody"))}</p></div></div>`;
 }
 
 function authHTML() {
   const a = st.auth;
   let panel;
   if (a.step === "code") {
-    // Supabase's free email sender only sends a link, so the screen is about the link.
-    // A code box stays tucked away for when a custom email sender adds codes to the email.
-    panel = `<div class="mail-ic" aria-hidden="true">${ic("mail")}</div>
-      <h1 id="authTitle">${esc(t("checkTitle"))}</h1>
-      <p>${esc(t("checkInbox", { e: a.email }))}</p>
-      <ol class="steps"><li>${esc(t("step1"))}</li><li>${esc(t("step2"))}</li></ol>
-      <p class="hint">${esc(t("spamHint"))}</p>
-      <details class="code-alt"${a.error ? " open" : ""}><summary>${esc(t("haveCode"))}</summary>
-        <form id="codeForm" novalidate>
-          <label>${esc(t("code"))}<input id="authCode" name="code" class="code" inputmode="numeric" autocomplete="one-time-code" maxlength="10" required></label>
-          ${a.error ? `<p class="err" role="alert">${esc(a.error)}</p>` : ""}
-          <button class="btn wide" type="submit" ${a.busy ? "disabled" : ""}>${esc(t("verify"))}</button>
-        </form></details>
+    panel = `<h1>${esc(t("signInTitle"))}</h1>
+      <p>${esc(t("checkInbox", { e: a.email }))}</p><p class="hint">${esc(t("enterCode"))}</p>
+      <form id="codeForm" novalidate>
+        <label>${esc(t("code"))}<input id="authCode" class="code" inputmode="numeric" autocomplete="one-time-code" maxlength="10" required></label>
+        ${a.error ? `<p class="err" role="alert">${esc(a.error)}</p>` : ""}
+        <button class="btn primary wide" type="submit" ${a.busy ? "disabled" : ""}>${esc(t("verify"))}</button>
+      </form>
       <p class="fine"><button class="linkish" type="button" id="resendBtn" data-resend>${esc(t("resend"))}</button></p>
       <p class="fine"><button class="linkish" type="button" data-auth-back>${esc(t("useDifferent"))}</button></p>`;
   } else {
-    panel = `<h1 id="authTitle">${esc(t("signInTitle"))}</h1><p class="hint">${esc(t("signInSub"))}</p>
+    panel = `<h1>${esc(t("signInTitle"))}</h1><p class="hint">${esc(t("signInSub"))}</p>
+      <button class="btn wide" type="button" data-google>${GMARK}${esc(t("google"))}</button>
+      <div class="divider">${esc(t("or"))}</div>
       <form id="emailForm" novalidate>
-        <label>${esc(t("email"))}<input id="authEmail" name="email" type="email" autocomplete="email" value="${esc(a.email)}" required></label>
-        <label>${esc(t("yourName"))}<input id="authName" name="name" autocomplete="name" maxlength="80" value="${esc(a.name)}"><span class="fine" style="font-weight:400">${esc(t("nameHint"))}</span></label>
+        <label>${esc(t("email"))}<input id="authEmail" type="email" autocomplete="email" value="${esc(a.email)}" required></label>
+        <label>${esc(t("yourName"))}<input id="authName" autocomplete="name" maxlength="80" value="${esc(a.name)}"><span class="fine" style="font-weight:400">${esc(t("nameHint"))}</span></label>
         ${a.error ? `<p class="err" role="alert">${esc(a.error)}</p>` : ""}
         <button class="btn primary wide" type="submit" ${a.busy ? "disabled" : ""}>${esc(t("sendCode"))}</button>
       </form>
       <p class="fine">${esc(t("approvalNote"))}</p>`;
   }
-  return `<div class="auth"><div class="auth-art" aria-hidden="true">${KOLAM}<b>${esc(t("org"))}</b><span>${esc(t("orgAlt"))}</span></div>
-    <main class="auth-panel" aria-labelledby="authTitle"><div class="top">${langToggle()}</div>${panel}</main></div>`;
+  return `<div class="auth"><div class="auth-art">${KOLAM}<b>${esc(t("org"))}</b><span>${esc(t("orgAlt"))}</span></div>
+    <div class="auth-panel"><div class="top">${langToggle()}</div>${panel}</div></div>`;
 }
 
 function gateHTML(h, body, pending) {
-  return `<div class="auth"><div class="auth-art" aria-hidden="true">${KOLAM}<b>${esc(t("org"))}</b><span>${esc(t("orgAlt"))}</span></div>
-    <main class="auth-panel" aria-labelledby="authTitle"><div class="top">${langToggle()}</div>
-      <h1 id="authTitle">${esc(h)}</h1><p class="hint">${esc(body)}</p>
+  return `<div class="auth"><div class="auth-art">${KOLAM}<b>${esc(t("org"))}</b><span>${esc(t("orgAlt"))}</span></div>
+    <div class="auth-panel"><div class="top">${langToggle()}</div>
+      <h1>${esc(h)}</h1><p class="hint">${esc(body)}</p>
       <p class="fine">${esc(st.me?.email || "")}</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         ${pending ? `<button class="btn primary" type="button" data-check-again>${esc(t("checkAgain"))}</button>` : ""}
-        <button class="btn" type="button" data-signout>${esc(t("signOut"))}</button></div></main></div>`;
+        <button class="btn" type="button" data-signout>${esc(t("signOut"))}</button></div></div></div>`;
 }
 
 function headerHTML() {
   const pc = pendingCount();
   const roleName = isOwner() ? t("owner") : isAdmin() ? t("admin") : t("member");
-  const v = currentView();
-  const nav = views().length > 1 ? `<nav class="views" aria-label="${esc(t("mainNav"))}">
-      ${[["dashboard", "vDash", "chart"], ["events", "vEvents", "calendar"]].map(([k, l, i]) =>
-        `<a href="#${k}" aria-label="${esc(t(l))}" ${v === k ? 'aria-current="page"' : ""}>${ic(i)}<span>${esc(t(l))}</span></a>`).join("")}</nav>` : "";
-  return `<header class="topbar"><div class="topbar-in">
-    <a class="brand" href="#${views()[0]}" aria-label="${esc(t("org") + " – " + t(views()[0] === "dashboard" ? "vDash" : "vEvents"))}"><span class="logo" aria-hidden="true">G</span><span class="brand-t"><b>${esc(t("org"))}</b><span>${esc(t("orgAlt"))}</span></span></a>
-    ${nav}
+  return `<header>
+    <div class="brand"><b>${esc(t("org"))}</b><span>${esc(t("orgAlt"))}</span></div>
     <div class="tools">
       ${langToggle()}
       ${isAdmin() ? `<button class="btn sm people-btn" type="button" data-members aria-label="${esc(t("members"))}${pc ? ", " + esc(t("approvalsWaiting", { n: pc })) : ""}">
-        ${ic("users")}<span class="people-label">${esc(t("members"))}</span>${pc ? `<span class="count-dot" aria-hidden="true">${pc}</span>` : ""}</button>` : ""}
-      ${isAdmin() ? `<button class="btn primary plan-top" type="button" data-plan>${ic("plus")}${esc(t("plan"))}</button>` : ""}
+        <span aria-hidden="true">👥</span><span class="people-label">${esc(t("members"))}</span>${pc ? `<span class="count-dot">${pc}</span>` : ""}</button>` : ""}
+      ${isAdmin() ? `<button class="btn primary plan-top" type="button" data-plan>${esc(t("plan"))}</button>` : ""}
       <div class="acct">
         <button class="acct-btn" type="button" data-menu aria-haspopup="true" aria-expanded="${st.menuOpen}" aria-label="${esc(t("account"))}">${avatar(myId(), "lg", st.me?.full_name || st.me?.email)}</button>
         ${st.menuOpen ? `<div class="menu" role="menu">
@@ -605,18 +521,7 @@ function headerHTML() {
           ${canInstall() ? `<button type="button" role="menuitem" data-install>${esc(t("install"))}</button>` : ""}
           <button type="button" role="menuitem" data-signout>${esc(t("signOut"))}</button></div>` : ""}
       </div>
-    </div></div></header>`;
-}
-/* phone-sized screens: an app-style tab bar for admins */
-function bottomNavHTML() {
-  if (!isAdmin()) return "";
-  const v = currentView(), pc = pendingCount();
-  return `<nav class="bottom-nav" aria-label="${esc(t("mainNav"))}">
-    <a href="#dashboard" aria-label="${esc(t("vDash"))}" ${v === "dashboard" ? 'aria-current="page"' : ""}>${ic("chart")}<span>${esc(t("vDash"))}</span></a>
-    <a href="#events" aria-label="${esc(t("vEvents"))}" ${v === "events" ? 'aria-current="page"' : ""}>${ic("calendar")}<span>${esc(t("vEvents"))}</span></a>
-    <button type="button" class="bn-plan" data-plan aria-label="${esc(t("plan"))}">${ic("plus")}<span>${esc(t("planShort"))}</span></button>
-    <button type="button" data-members aria-label="${esc(t("members") + (pc ? ", " + t("approvalsWaiting", { n: pc }) : ""))}">${ic("users")}<span>${esc(t("members"))}</span>${pc ? `<span class="count-dot" aria-hidden="true">${pc}</span>` : ""}</button>
-  </nav>`;
+    </div></header>`;
 }
 
 /* install support */
@@ -633,7 +538,7 @@ function bannersHTML() {
   let h = "";
   if (st.offlineAt) h += `<div class="banner warn"><p>${esc(t("offline", { d: new Intl.DateTimeFormat(loc(), { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }).format(new Date(st.offlineAt)) }))}</p></div>`;
   const pc = pendingCount();
-  if (isAdmin() && pc && currentView() !== "dashboard") h += `<div class="banner alert"><p>${esc(t("approvalsWaiting", { n: pc }))}</p><button class="btn sm primary" type="button" data-members>${esc(t("review"))}</button></div>`;
+  if (isAdmin() && pc) h += `<div class="banner alert"><p>${esc(t("approvalsWaiting", { n: pc }))}</p><button class="btn sm primary" type="button" data-members>${esc(t("review"))}</button></div>`;
   if (canInstall() && !st.installDismissed) h += `<div class="banner"><p>${esc(isIOS() && !st.installEvt ? t("iosInstall") : t("installBanner"))}</p>
     ${st.installEvt ? `<button class="btn sm primary" type="button" data-install>${esc(t("install"))}</button>` : ""}<button class="btn sm quiet" type="button" data-install-dismiss>${esc(t("dismiss"))}</button></div>`;
   return h;
@@ -642,7 +547,7 @@ function bannersHTML() {
 function rsvpButtons(e) {
   if (isFest(e) || e._draft) return "";
   const mine = myRsvp(e.id)?.status; const dis = st.offlineAt ? "disabled" : "";
-  return `<div class="rsvp" role="group" aria-label="${esc(t("willYou") + " " + title(e))}">${["going", "maybe", "no"].map((s) =>
+  return `<div class="rsvp" role="group" aria-label="${esc(t("willYou"))}">${["going", "maybe", "no"].map((s) =>
     `<button type="button" data-rsvp="${esc(e.id)}" data-s="${s}" aria-pressed="${mine === s}" ${dis}>${esc(t(s))}</button>`).join("")}</div>`;
 }
 function signals(e) {
@@ -658,202 +563,9 @@ function tagsHTML(e) {
 }
 
 function appHTML() {
-  const body = !st.loaded ? `<p class="loading">${esc(t("loading"))}</p>` : currentView() === "dashboard" ? dashboardHTML() : eventsHTML();
-  return `<a class="skip" href="#main">${esc(t("skip"))}</a>${headerHTML()}
-    <div class="wrap${isAdmin() ? " has-bn" : ""}">${bannersHTML()}<main id="main" tabindex="-1" data-view="${currentView()}">${body}</main>
-    <details class="access"><summary>${esc(t("accessQ"))}</summary><p>${esc(t("accessA"))}</p></details></div>
-    ${bottomNavHTML()}`;
-}
-
-/* ================= admin dashboard ================= */
-function dashStats() {
-  const today = todayS(), in30 = ymd(new Date(Date.now() + 30 * 864e5));
-  const future = allItems().filter((e) => e.date >= today && !isFest(e));
-  const pub = future.filter((e) => !e._draft), drafts = future.filter((e) => e._draft);
-  let going = 0, maybe = 0, need = 0, filled = 0, tasks = 0, done = 0;
-  for (const e of pub) { const c = counts(e.id); going += c.going; maybe += c.maybe; }
-  for (const e of future) {
-    for (const s of slotsOf(e)) { const n = Math.max(1, Number(s.need) || 1); need += n; filled += Math.min(n, slotPeople(e.id, s.id).length); }
-    const p = planOf(e.id); tasks += p.length; done += p.filter((i) => i.done).length;
-  }
-  const r = { owner: 0, admin: 0, member: 0, pending: 0, blocked: 0 };
-  for (const p of st.people) if (p.role in r) r[p.role]++;
-  return { future, pub, drafts, soon: pub.filter((e) => e.date <= in30).length, going, maybe, need, filled, tasks, done, r };
-}
-const pctOf = (a, b) => (b ? Math.round((a / b) * 100) : 0);
-const meter = (p, label) => `<span class="meter" role="img" aria-label="${esc(label || p + "%")}"><i style="width:${p}%"></i></span>`;
-function statCard(o) {
-  const tag = o.act ? "button" : "div";
-  return `<${tag} class="stat${o.tone ? " " + o.tone : ""}"${o.act ? ` type="button" ${o.act}` : ""} aria-label="${esc(o.label + ": " + o.value + ". " + o.sub)}"${o.act ? "" : ' role="group"'}>
-    <span class="stat-top"><span class="stat-ic">${ic(o.icon)}</span><span class="stat-label">${esc(o.label)}</span></span>
-    <span class="stat-value">${esc(o.value)}</span>
-    ${o.pct != null ? meter(o.pct) : ""}
-    <span class="stat-sub">${esc(o.sub)}</span>${o.act ? `<span class="stat-go" aria-hidden="true">${esc(t("viewArrow"))}</span>` : ""}</${tag}>`;
-}
-function attentionItems(S) {
-  const out = [], soon = ymd(new Date(Date.now() + 21 * 864e5));
-  if (S.r.pending) out.push({ icon: "users", tone: "hot", text: S.r.pending === 1 ? t("aPending1") : t("aPending", { n: S.r.pending }), act: "data-members", label: t("review") });
-  for (const e of S.future) {
-    const name = title(e), sub = fmt(e.date, { weekday: "short", month: "short", day: "numeric" }) + " · " + when(e.date);
-    const open = `data-open="${esc(e.id)}"`;
-    if (e._draft) { out.push({ icon: "draft", text: t("aDraft", { t: name }), sub, act: open, label: t("open") }); continue; }
-    if (e.date > soon) continue;
-    const spots = openSpots(e);
-    if (spots) out.push({ icon: "heart", tone: "warn", text: t(spots === 1 ? "aSpots1" : "aSpots", { t: name, n: spots }), sub, act: open + ' data-go-tab="vol"', label: t("open") });
-    const p = planOf(e.id), d = p.filter((i) => i.done).length;
-    if (!p.length) out.push({ icon: "list", text: t("aNoPlan", { t: name }), sub, act: open + ' data-go-tab="check"', label: t("open") });
-    else if (d < p.length) out.push({ icon: "list", text: t("aTasks", { t: name, a: d, b: p.length }), sub, act: open + ' data-go-tab="check"', label: t("open") });
-    if (e.tentative) out.push({ icon: "clock", text: t("aTbc", { t: name }), sub, act: open, label: t("open") });
-  }
-  return out;
-}
-/* ---------- dashboard grids: search, filters, sorting and paging ---------- */
-st.grid = {
-  att: { q: "", page: 0, kind: "all" },
-  ev: { q: "", page: 0, sort: "date", dir: 1, when: "upcoming", status: "all" }
-};
-const PAGE_SIZE = { att: 5, ev: 6 };
-const norm = (s) => String(s || "").toLowerCase();
-function pageOf(list, key) {
-  const g = st.grid[key], size = PAGE_SIZE[key], pages = Math.max(1, Math.ceil(list.length / size));
-  if (g.page > pages - 1) g.page = pages - 1;
-  if (g.page < 0) g.page = 0;
-  const start = g.page * size;
-  return { rows: list.slice(start, start + size), pages, start, end: Math.min(start + size, list.length), total: list.length, page: g.page };
-}
-function pagerHTML(key, p) {
-  if (!p.total) return "";
-  return `<div class="pager">
-    <span class="pg-info" aria-live="polite">${esc(t("showing", { a: p.start + 1, b: p.end, n: p.total }))}</span>
-    <div class="pg-btns">
-      <button class="btn sm" type="button" id="pg-${key}-prev" data-pg="${key}" data-d="-1" aria-label="${esc(t("prevPage"))}" ${p.page === 0 ? "disabled" : ""}>‹</button>
-      <span class="pg-n">${esc(t("pageN", { a: p.page + 1, b: p.pages }))}</span>
-      <button class="btn sm" type="button" id="pg-${key}-next" data-pg="${key}" data-d="1" aria-label="${esc(t("nextPage"))}" ${p.page >= p.pages - 1 ? "disabled" : ""}>›</button>
-    </div></div>`;
-}
-const searchBox = (key, ph) => `<label class="grid-search">${ic("search")}<input id="q-${key}" type="search" data-grid-q="${key}" value="${esc(st.grid[key].q)}" placeholder="${esc(ph)}" aria-label="${esc(ph)}" autocomplete="off"></label>`;
-const noMatchHTML = (key) => `<div class="no-match"><p>${esc(t("noMatch"))}</p><button class="btn sm" type="button" id="clr-${key}" data-grid-clear="${key}">${esc(t("clearFilters"))}</button></div>`;
-
-/* Stat cards jump to the grid row that explains the number. */
-function openStat(k) {
-  const a = st.grid.att, e = st.grid.ev;
-  if (k === "drafts") Object.assign(e, { q: "", page: 0, when: "all", status: "draft", sort: "date", dir: 1 });
-  if (k === "going") Object.assign(e, { q: "", page: 0, when: "upcoming", status: "all", sort: "going", dir: -1 });
-  if (k === "vol") Object.assign(a, { q: "", page: 0, kind: "vol" });
-  if (k === "tasks") Object.assign(a, { q: "", page: 0, kind: "check" });
-  render();
-  const id = k === "vol" || k === "tasks" ? "attH" : "evH";
-  const card = document.getElementById(id)?.closest("section");
-  if (!card) return;
-  card.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
-  card.classList.remove("flash"); void card.offsetWidth; card.classList.add("flash");
-  setTimeout(() => card.classList.remove("flash"), 1600);
-}
-
-/* Needs attention */
-const ATT_KIND = { users: "people", heart: "vol", list: "check", draft: "draft", clock: "date" };
-function attentionHTML(att) {
-  const g = st.grid.att;
-  const items = att.map((a) => ({ ...a, kind: ATT_KIND[a.icon] || "other" }));
-  const kinds = [["all", "cAll"], ["people", "cPeople"], ["vol", "cVol"], ["check", "cCheck"], ["date", "cDate"], ["draft", "cDraft"]]
-    .map(([k, l]) => ({ k, l, n: k === "all" ? items.length : items.filter((i) => i.kind === k).length }))
-    .filter((c) => c.k === "all" || c.n);
-  if (g.kind !== "all" && !kinds.some((c) => c.k === g.kind)) g.kind = "all";
-  const q = norm(g.q);
-  const list = items.filter((i) => (g.kind === "all" || i.kind === g.kind) && (!q || norm(i.text + " " + (i.sub || "")).includes(q)));
-  const p = pageOf(list, "att");
-  const head = `<div class="card-head"><h2 id="attH">${esc(t("attention"))}</h2>${att.length ? `<span class="badge">${att.length}</span>` : ""}</div>`;
-  if (!att.length) return `<section class="card" aria-labelledby="attH">${head}<p class="all-clear">${ic("check")}<span>${esc(t("allClear"))}</span></p></section>`;
-  return `<section class="card grid-card" aria-labelledby="attH">${head}
-    <div class="grid-tools">${searchBox("att", t("searchAtt"))}</div>
-    <div class="fchips" role="group" aria-label="${esc(t("filterBy"))}">${kinds.map((c) =>
-      `<button type="button" id="chip-${c.k}" data-att-kind="${c.k}" aria-pressed="${g.kind === c.k}">${esc(t(c.l))}<span>${c.n}</span></button>`).join("")}</div>
-    ${p.total ? `<ul class="attn">${p.rows.map((a) => `<li class="${a.tone || ""}"><span class="attn-ic">${ic(a.icon)}</span>
-      <span class="attn-t">${esc(a.text)}${a.sub ? `<span class="sub">${esc(a.sub)}</span>` : ""}</span>
-      <button class="btn sm" type="button" ${a.act} aria-label="${esc(a.label + ": " + a.text)}">${esc(a.label)}</button></li>`).join("")}</ul>` : noMatchHTML("att")}
-    ${pagerHTML("att", p)}</section>`;
-}
-
-/* Events grid */
-const DESC_FIRST = ["going", "maybe", "vol", "check"];
-function eventRows() {
-  const g = st.grid.ev, today = todayS(), q = norm(g.q);
-  const rows = allItems().filter((e) => !isFest(e))
-    .filter((e) => g.when === "all" || (g.when === "past" ? e.date < today : e.date >= today))
-    .map((e) => {
-      const c = counts(e.id), sl = slotsOf(e), p = planOf(e.id), done = p.filter((i) => i.done).length;
-      const need = sl.reduce((n, s) => n + Math.max(1, Number(s.need) || 1), 0);
-      const fill = sl.reduce((n, s) => n + Math.min(Math.max(1, Number(s.need) || 1), slotPeople(e.id, s.id).length), 0);
-      const status = e._draft ? "draft" : e.tentative ? "tbc" : "published";
-      return { e, going: e._draft ? -1 : c.going, maybe: e._draft ? -1 : c.maybe, need, fill, vol: need ? fill / need : -1, tasks: p.length, done, check: p.length ? done / p.length : -1, status };
-    })
-    .filter((r) => g.status === "all" || r.status === g.status)
-    .filter((r) => !q || norm([r.e.title, r.e.titleTa, r.e.venue, t("cat")[r.e.category]].join(" ")).includes(q));
-  const key = { date: (r) => r.e.date + (r.e.start || ""), title: (r) => norm(title(r.e)), going: (r) => r.going, maybe: (r) => r.maybe, vol: (r) => r.vol, check: (r) => r.check, status: (r) => r.status }[g.sort] || ((r) => r.e.date);
-  rows.sort((a, b) => { const x = key(a), y = key(b); return (x < y ? -1 : x > y ? 1 : 0) * g.dir || (a.e.date < b.e.date ? -1 : 1); });
-  return rows;
-}
-function eventsGridHTML() {
-  const g = st.grid.ev, rows = eventRows(), p = pageOf(rows, "ev");
-  const cols = [["date", "colDate"], ["title", "colEvent"], ["going", "colGoing", "num"], ["maybe", "colMaybe", "num"], ["vol", "colVol"], ["check", "colCheck"], ["status", "colStatus"]];
-  const th = ([k, l, cls]) => {
-    const on = g.sort === k, sort = on ? (g.dir > 0 ? "ascending" : "descending") : "none";
-    return `<th scope="col" aria-sort="${sort}"${cls ? ` class="${cls}"` : ""}><button type="button" class="th-sort${on ? " on" : ""}" id="sort-${k}" data-sort="${k}">${esc(t(l))}<span class="arr" aria-hidden="true">${on ? (g.dir > 0 ? "▲" : "▼") : "↕"}</span></button></th>`;
-  };
-  const statusTag = (s) => s === "draft" ? `<span class="tag draft">${esc(t("draft"))}</span>` : s === "tbc" ? `<span class="tag">${esc(t("tbc"))}</span>` : `<span class="tag ok">${esc(t("published2"))}</span>`;
-  const opt = (v, cur, l) => `<option value="${v}"${v === cur ? " selected" : ""}>${esc(l)}</option>`;
-  const body = p.rows.map((r) => {
-    const e = r.e;
-    return `<tr>
-      <td data-label="${esc(t("colDate"))}"><b>${esc(fmt(e.date, { month: "short", day: "numeric" }))}</b><span class="sub">${esc(e.date >= todayS() ? when(e.date) : fmt(e.date, { year: "numeric" }))}</span></td>
-      <th scope="row" data-label="${esc(t("colEvent"))}"><button type="button" class="ev-link" data-open="${esc(e.id)}">${esc(title(e))}</button><span class="sub">${esc(timeRange(e))}${e.venue ? " · " + esc(e.venue) : ""}</span></th>
-      <td class="num" data-label="${esc(t("colGoing"))}">${r.going < 0 ? "–" : r.going}</td>
-      <td class="num" data-label="${esc(t("colMaybe"))}">${r.maybe < 0 ? "–" : r.maybe}</td>
-      <td data-label="${esc(t("colVol"))}">${r.need ? `<span class="mini">${r.fill}/${r.need}${meter(pctOf(r.fill, r.need), t("filled", { a: r.fill, b: r.need }))}</span>` : "–"}</td>
-      <td data-label="${esc(t("colCheck"))}">${r.tasks ? `<span class="mini">${r.done}/${r.tasks}${meter(pctOf(r.done, r.tasks), t("clProgress", { a: r.done, b: r.tasks }))}</span>` : "–"}</td>
-      <td data-label="${esc(t("colStatus"))}">${statusTag(r.status)}</td></tr>`;
-  }).join("");
-  return `<section class="card grid-card" aria-labelledby="evH">
-    <div class="card-head"><h2 id="evH">${esc(t("evTable"))}</h2><span class="badge">${rows.length}</span><a class="btn sm" href="#events">${ic("calendar")}${esc(t("viewCal"))}</a></div>
-    <div class="grid-tools">${searchBox("ev", t("searchEvents"))}
-      <select id="sel-when" data-grid-sel="when" aria-label="${esc(t("showWhen"))}">${opt("upcoming", g.when, t("wUpcoming"))}${opt("past", g.when, t("wPast"))}${opt("all", g.when, t("wAll"))}</select>
-      <select id="sel-status" data-grid-sel="status" aria-label="${esc(t("colStatus"))}">${opt("all", g.status, t("sAll"))}${opt("published", g.status, t("published2"))}${opt("tbc", g.status, t("tbc"))}${opt("draft", g.status, t("draft"))}</select>
-      <select id="sel-sort" class="m-only" data-grid-sel="sort" aria-label="${esc(t("sortBy"))}">${cols.map(([k, l]) => opt(k, g.sort, t("sortBy") + ": " + t(l))).join("")}</select>
-    </div>
-    ${p.total ? `<div class="table-wrap"><table class="dt"><thead><tr>${cols.map(th).join("")}</tr></thead><tbody>${body}</tbody></table></div>` : noMatchHTML("ev")}
-    ${pagerHTML("ev", p)}</section>`;
-}
-function dashboardHTML() {
-  const S = dashStats(), att = attentionItems(S), fest = allItems().find((e) => e.date >= todayS() && isFest(e));
-  const active = S.r.owner + S.r.admin + S.r.member;
-  const stats = [
-    { icon: "calendar", label: t("sUpcoming"), value: S.pub.length, sub: t("sUpcomingSub", { n: S.soon }), act: 'data-goto="events"' },
-    { icon: "draft", label: t("sDrafts"), value: S.drafts.length, sub: t("sDraftsSub"), act: 'data-stat="drafts"' },
-    { icon: "ticket", label: t("sGoing"), value: S.going, sub: t("sGoingSub", { n: S.maybe }), tone: "teal", act: 'data-stat="going"' },
-    { icon: "heart", label: t("sVol"), value: S.need ? `${S.filled}/${S.need}` : "0", pct: S.need ? pctOf(S.filled, S.need) : null, sub: S.need ? t("sVolSub", { n: S.need - S.filled }) : t("sVolNone"), tone: S.need > S.filled ? "gold" : "", act: 'data-stat="vol"' },
-    { icon: "list", label: t("sTasks"), value: S.tasks ? `${S.done}/${S.tasks}` : "0", pct: S.tasks ? pctOf(S.done, S.tasks) : null, sub: S.tasks ? t("sTasksSub") : t("sTasksNone"), act: 'data-stat="tasks"' },
-    { icon: "users", label: t("sMembers"), value: active, sub: S.r.pending ? t("sMembersSub", { n: S.r.pending }) : t("sMembersNone"), tone: S.r.pending ? "hot" : "", act: "data-members" }
-  ];
-  const roles = [["rOwner", S.r.owner], ["rAdmins", S.r.admin], ["rMembers", S.r.member], ["rWaiting", S.r.pending], ["rRemoved", S.r.blocked]];
-  return `<div class="page-head"><h1 id="pageTitle">${esc(t("dashTitle"))}</h1><p class="hint">${esc(t("dashSub"))}</p></div>
-    <div class="stats">${stats.map(statCard).join("")}</div>
-    <div class="dash-grid">
-      ${attentionHTML(att)}
-      <div class="side">
-        <section class="card" aria-labelledby="teamH"><div class="card-head"><h2 id="teamH">${esc(t("team"))}</h2><button class="btn sm" type="button" data-members>${esc(t("manage"))}</button></div>
-          <dl class="kv">${roles.map(([k, n]) => `<div${k === "rWaiting" && n ? ' class="hot"' : ""}><dt>${esc(t(k))}</dt><dd>${n}</dd></div>`).join("")}</dl></section>
-        <section class="card" aria-labelledby="festH"><div class="card-head"><h2 id="festH">${esc(t("festNext"))}</h2></div>
-          ${fest ? `<button type="button" class="fest-card" data-open="${esc(fest.id)}" aria-label="${esc(title(fest) + ", " + fmt(fest.date, { weekday: "long", month: "long", day: "numeric" }) + ", " + when(fest.date))}">${ic("star")}<span><b>${esc(title(fest))}</b><span class="sub">${esc(fmt(fest.date, { weekday: "long", month: "long", day: "numeric" }))} · ${esc(when(fest.date))}</span></span></button>`
-            : `<p class="hint">${esc(t("festNone"))}</p>`}</section>
-      </div>
-    </div>
-    ${eventsGridHTML()}`;
-}
-
-/* ================= events view (everyone) ================= */
-function eventsHTML() {
   let body;
-  {
+  if (!st.loaded) body = `<p class="loading">${esc(t("loading"))}</p>`;
+  else {
     const today = todayS(), items = allItems(), future = items.filter((e) => e.date >= today);
     const hero = future.find((e) => !isFest(e) && !e._draft);
     const nextFest = future.find(isFest);
@@ -867,7 +579,8 @@ function eventsHTML() {
           <h1 id="heroTitle">${esc(title(hero))}</h1>
           <div class="meta"><span>${esc(timeRange(hero))}</span>${hero.venue ? `<span>${esc(hero.venue)}</span>` : ""}${hero.tentative ? `<span>${esc(t("tbc"))}</span>` : ""}</div>
           ${signals(hero)}
-          <div class="hero-actions">${rsvpButtons(hero)}<button class="btn sm" type="button" data-open="${esc(hero.id)}">${esc(t("details"))}</button></div>
+          ${myRolesFor(hero).length ? `<span class="mine">${esc(t("youVolunteer", { r: myRolesFor(hero).join(", ") }))}</span>` : ""}
+          <div class="hero-actions">${rsvpButtons(hero)}${openSpots(hero) > 0 && !myRolesFor(hero).length && !st.offlineAt ? `<button class="btn sm primary" type="button" data-openvol="${esc(hero.id)}">${esc(t("volunteerBtn"))}</button>` : ""}<button class="btn sm" type="button" data-open="${esc(hero.id)}">${esc(t("details"))}</button></div>
         </div></article>`;
     } else {
       body += `<article class="hero empty"><div class="hero-body">
@@ -876,6 +589,7 @@ function eventsHTML() {
         ${isAdmin() ? `<button class="btn primary" type="button" data-new="">${esc(t("plan"))}</button>` : ""}
       </div></article>`;
     }
+    body += myJobsHTML(future) + helpNeededHTML(future);
     const rest = future.filter((e) => e !== hero).slice(0, 8);
     body += `<section aria-labelledby="upH"><div class="sec-head"><h2 id="upH">${esc(t("upcoming"))}</h2></div><div class="list">
       ${rest.length ? rest.map(rowHTML).join("") : `<p class="empty-note">${esc(t("noUpcoming"))}</p>`}</div></section>`;
@@ -886,14 +600,56 @@ function eventsHTML() {
       <button class="btn sm" type="button" data-month="0">${esc(t("jumpToday"))}</button></div></div>
       ${calendarHTML(items)}${dayPanelHTML(items)}</section>`;
   }
-  return body;
+  return `<div class="wrap">${headerHTML()}${bannersHTML()}<main>${body}</main>
+    <details class="access"><summary>${esc(t("accessQ"))}</summary><p>${esc(t("accessA"))}</p></details></div>
+    ${isAdmin() ? `<button class="btn primary fab" type="button" data-plan>+ ${esc(t("planShort"))}</button>` : ""}`;
+}
+
+/* ---- volunteer-first home sections ---- */
+const myRolesFor = (e) => slotsOf(e).filter((s) => slotPeople(e.id, s.id).includes(myId())).map((s) => s.name);
+function openJobs(future) {
+  const jobs = [];
+  for (const e of future) {
+    if (isFest(e) || e._draft) continue;
+    for (const s of slotsOf(e)) {
+      const ppl = slotPeople(e.id, s.id), need = Math.max(1, Number(s.need) || 1);
+      if (ppl.length < need && !ppl.includes(myId())) jobs.push({ e, s, have: ppl.length, need });
+    }
+  }
+  return jobs;
+}
+function jobRow(j, mine) {
+  const d = parse(j.e.date), left = j.need - j.have, pct = Math.round((j.have / j.need) * 100);
+  const btn = mine
+    ? `<button class="btn sm" type="button" data-openvol="${esc(j.e.id)}">${esc(t("details"))}</button>`
+    : `<button class="btn sm primary" type="button" data-vol="${esc(j.e.id)}" data-slot="${esc(j.s.id)}" ${st.offlineAt ? "disabled" : ""}>${esc(t("signUp"))}</button>`;
+  return `<div class="job${mine ? " mine-job" : ""}">
+    <span class="dblock"><span class="d">${d.getDate()}</span><span class="m">${esc(fmt(j.e.date, { month: "short" }))}</span></span>
+    <span class="job-main"><span class="t">${esc(j.s.name)}</span><span class="s">${esc(title(j.e))} · ${esc(timeRange(j.e))}</span></span>
+    ${mine ? `<span class="mine">${esc(t("youIn"))}</span>` : `<span class="job-fill"><span class="bar"><i style="width:${pct}%"></i></span><span>${esc(left === 1 ? t("spotLeft1") : t("spotsLeft", { n: left }))}</span></span>`}
+    ${btn}</div>`;
+}
+function myJobsHTML(future) {
+  const mine = [];
+  for (const e of future) for (const s of slotsOf(e)) if (slotPeople(e.id, s.id).includes(myId())) mine.push({ e, s, have: 0, need: 1 });
+  if (!mine.length) return "";
+  return `<section aria-labelledby="myVolH"><div class="sec-head"><h2 id="myVolH">${esc(t("myVol"))}</h2></div>
+    <div class="jobs">${mine.map((j) => jobRow(j, true)).join("")}</div></section>`;
+}
+function helpNeededHTML(future) {
+  const anySlots = future.some((e) => !isFest(e) && !e._draft && slotsOf(e).length);
+  if (!anySlots) return "";
+  const jobs = openJobs(future), shown = jobs.slice(0, 6);
+  return `<section aria-labelledby="helpH"><div class="sec-head"><h2 id="helpH">${esc(t("helpNeeded"))}</h2></div>
+    <p class="hint" style="margin:-4px 0 12px">${esc(jobs.length ? t("helpNeededSub") : t("noOpenJobs"))}</p>
+    ${shown.length ? `<div class="jobs">${shown.map((j) => jobRow(j, false)).join("")}</div>` : ""}
+    ${jobs.length > shown.length ? `<p class="hint" style="margin-top:10px">${esc(t("moreJobs", { n: jobs.length - shown.length }))}</p>` : ""}</section>`;
 }
 
 function rowHTML(e) {
   const d = parse(e.date);
   const sub = isFest(e) ? esc(when(e.date)) : [esc(timeRange(e)), e.venue ? esc(e.venue) : ""].filter(Boolean).join(" · ");
-  const aria = [title(e), fmt(e.date, { weekday: "long", month: "long", day: "numeric" }), isFest(e) ? t("festival") : timeRange(e), e.venue, e._draft ? t("draft") : "", e.tentative ? t("tbc") : ""].filter(Boolean).join(", ");
-  return `<button type="button" class="row${isFest(e) ? " fest" : ""}" data-open="${esc(e.id)}" aria-label="${esc(aria)}">
+  return `<button type="button" class="row${isFest(e) ? " fest" : ""}" data-open="${esc(e.id)}">
     <span class="dblock"><span class="d">${d.getDate()}</span><span class="m">${esc(fmt(e.date, { month: "short" }))}</span></span>
     <span><span class="t">${esc(title(e))}</span><span class="s">${sub}</span>${signals(e)}</span>
     <span class="tags">${tagsHTML(e)}</span></button>`;
@@ -953,11 +709,10 @@ function openDetail(id, opts = {}) {
   }
   dlg.innerHTML = `<div class="dlg">
     <div class="dlg-head"><div class="titles">${tagsHTML(e) ? `<div class="tags">${tagsHTML(e)}</div>` : ""}
-      <h2 id="dlgTitle">${esc(title(e))}</h2>${st.lang === "en" && e.titleTa ? `<p class="hint">${esc(e.titleTa)}</p>` : ""}</div>
+      <h2>${esc(title(e))}</h2>${st.lang === "en" && e.titleTa ? `<p class="hint">${esc(e.titleTa)}</p>` : ""}</div>
       <button class="icon-btn" type="button" data-close aria-label="${esc(t("close"))}">×</button></div>
     ${tabs}<div class="dlg-body">${body}</div>
     ${foot.trim() ? `<div class="dlg-foot">${foot}</div>` : ""}</div>`;
-  nameControls(dlg);
   if (!dlg.open) dlg.showModal();
   if (opts.focus) document.getElementById(opts.focus)?.focus();
 }
@@ -985,11 +740,12 @@ function volunteersHTML(e) {
     const ppl = slotPeople(e.id, s.id), need = Math.max(1, Number(s.need) || 1), inIt = ppl.includes(myId()), full = ppl.length >= need;
     const pct = Math.min(100, Math.round((ppl.length / need) * 100));
     const act = e._draft ? "" : inIt
-      ? `<button class="btn sm" type="button" data-vol="${esc(e.id)}" data-slot="${esc(s.id)}" data-leave aria-label="${esc(t("leave") + ": " + s.name)}" ${st.offlineAt ? "disabled" : ""}>${esc(t("leave"))}</button>`
-      : `<button class="btn sm ${full ? "" : "primary"}" type="button" data-vol="${esc(e.id)}" data-slot="${esc(s.id)}" aria-label="${esc((full ? t("full") : t("signUp")) + ": " + s.name)}" ${full || st.offlineAt ? "disabled" : ""}>${esc(full ? t("full") : t("signUp"))}</button>`;
+      ? `<button class="btn sm" type="button" data-vol="${esc(e.id)}" data-slot="${esc(s.id)}" data-leave ${st.offlineAt ? "disabled" : ""}>${esc(t("leave"))}</button>`
+      : `<button class="btn sm ${full ? "" : "primary"}" type="button" data-vol="${esc(e.id)}" data-slot="${esc(s.id)}" ${full || st.offlineAt ? "disabled" : ""}>${esc(full ? t("full") : t("signUp"))}</button>`;
     return `<div class="slot${full ? " full" : ""}"><span class="name">${esc(s.name)}</span>
       <span class="sub"><span class="bar"><i style="width:${pct}%"></i></span><span>${esc(t("filled", { a: ppl.length, b: need }))}</span>
       ${inIt ? `<span class="mine">${esc(t("youIn"))}</span>` : ""}${avatarStack(ppl)}</span>
+      ${isAdmin() && ppl.length ? `<span class="roster">${esc(t("roster", { n: ppl.map(nameOf).join(", ") }))}</span>` : ""}
       <span class="act">${act}</span></div>`;
   }).join("");
 }
@@ -1001,7 +757,7 @@ function checklistHTML(e) {
     ${items.length ? `<ul class="items">${items.map((i) => `<li class="item${i.done ? " done" : ""}">
       <input type="checkbox" data-tick="${esc(i.id)}" ${i.done ? "checked" : ""} aria-label="${esc(i.text)}">
       <span><span class="txt">${esc(i.text)}</span>${i.done && i.done_by ? `<span class="by">${esc(t("doneBy", { n: nameOf(i.done_by) }))}</span>` : ""}</span>
-      <button class="icon-btn" type="button" data-rmitem="${esc(i.id)}" aria-label="${esc(t("remove") + ": " + i.text)}">×</button></li>`).join("")}</ul>`
+      <button class="icon-btn" type="button" data-rmitem="${esc(i.id)}" aria-label="${esc(t("remove"))}">×</button></li>`).join("")}</ul>`
       : `<p class="hint">${esc(t("clEmpty"))}</p><div><button class="btn" type="button" data-starter>${esc(t("starter"))}</button></div>`}
     <form class="add-row" id="addItemForm"><input id="newItem" maxlength="200" placeholder="${esc(t("addItem"))}" aria-label="${esc(t("addItem"))}"><button class="btn" type="submit">${esc(t("add"))}</button></form>`;
 }
@@ -1019,7 +775,7 @@ function openForm(id, presetDate, prefill, focusSlots) {
   const v = e ? { ...e } : { title: prefill ? prefill + (st.lang === "ta" ? " கொண்டாட்டம்" : " celebration") : "", date: presetDate || todayS(), category: "celebration" };
   st.form = { id: e?.id || null, slots: slotsOf(v).map((s) => ({ ...s })), origSlotIds: slotsOf(v).map((s) => s.id) };
   dlg.innerHTML = `<form class="dlg" novalidate id="evForm">
-    <div class="dlg-head"><div class="titles"><h2 id="dlgTitle">${esc(e ? t("editEvent") : t("newEvent"))}</h2></div>
+    <div class="dlg-head"><div class="titles"><h2>${esc(e ? t("editEvent") : t("newEvent"))}</h2></div>
       <button class="icon-btn" type="button" data-close aria-label="${esc(t("close"))}">×</button></div>
     <div class="dlg-body">
       <div class="fgroup">
@@ -1050,7 +806,6 @@ function openForm(id, presetDate, prefill, focusSlots) {
       <button class="btn" type="button" data-form-cancel="${esc(e?.id || "")}">${esc(t("cancel"))}</button>
       <button class="btn primary" type="submit" id="saveBtn">${esc(e ? t("saveChanges") : t("publish"))}</button>
     </div></form>`;
-  nameControls(dlg);
   if (!dlg.open) dlg.showModal();
   renderSlotEditor();
   const f = $("#evForm");
@@ -1063,9 +818,9 @@ function renderSlotEditor() {
   list.innerHTML = `<div class="fgroup" style="gap:8px">
     ${sl.length ? `<div class="slot-edit" style="font-size:.8rem;color:var(--muted);font-weight:600"><span>${esc(t("slotName"))}</span><span>${esc(t("slotNeed"))}</span><span></span></div>` : ""}
     ${sl.map((s, i) => `<div class="slot-edit">
-      <input data-sname="${i}" maxlength="80" value="${esc(s.name)}" aria-label="${esc(t("slotName") + " " + (i + 1))}">
-      <input data-sneed="${i}" type="number" min="1" max="99" value="${Number(s.need) || 1}" aria-label="${esc(t("slotNeed") + " " + (i + 1))}">
-      <button class="icon-btn" type="button" data-rmslot="${i}" aria-label="${esc(t("remove") + " " + (s.name || i + 1))}">×</button></div>`).join("")}
+      <input data-sname="${i}" maxlength="80" value="${esc(s.name)}" aria-label="${esc(t("slotName"))}">
+      <input data-sneed="${i}" type="number" min="1" max="99" value="${Number(s.need) || 1}" aria-label="${esc(t("slotNeed"))}">
+      <button class="icon-btn" type="button" data-rmslot="${i}" aria-label="${esc(t("remove"))}">×</button></div>`).join("")}
     <div class="chips"><button type="button" data-addslot="">+ ${esc(t("addSlot"))}</button>
       ${S[st.lang].sugg.filter((n) => !sl.some((s) => s.name === n)).map((n) => `<button type="button" data-addslot="${esc(n)}">${esc(n)}</button>`).join("")}</div></div>`;
 }
@@ -1130,21 +885,20 @@ function renderMembers() {
   const list = tab === "waiting" ? waiting : tab === "members" ? active : removed;
   const roleLabel = (r) => (r === "owner" ? t("owner") : r === "admin" ? t("admin") : r === "member" ? t("member") : "");
   const actions = (p) => {
-    const L = (k) => ` aria-label="${esc(t(k) + ": " + (p.full_name || p.email || ""))}"`;
     if (p.id === myId()) return `<span class="role">${esc(t("you"))}</span>`;
-    if (p.role === "pending") return `<button class="btn sm" type="button" data-setrole="${esc(p.id)}" data-r="blocked"${L("decline")}>${esc(t("decline"))}</button><button class="btn sm primary" type="button" data-setrole="${esc(p.id)}" data-r="member"${L("approve")}>${esc(t("approve"))}</button>`;
-    if (p.role === "blocked") return `<button class="btn sm" type="button" data-setrole="${esc(p.id)}" data-r="member"${L("restore")}>${esc(t("restore"))}</button>`;
+    if (p.role === "pending") return `<button class="btn sm" type="button" data-setrole="${esc(p.id)}" data-r="blocked">${esc(t("decline"))}</button><button class="btn sm primary" type="button" data-setrole="${esc(p.id)}" data-r="member">${esc(t("approve"))}</button>`;
+    if (p.role === "blocked") return `<button class="btn sm" type="button" data-setrole="${esc(p.id)}" data-r="member">${esc(t("restore"))}</button>`;
     if (p.role === "owner") return "";
     let h = "";
     if (isOwner()) h += p.role === "admin"
-      ? `<button class="btn sm" type="button" data-setrole="${esc(p.id)}" data-r="member"${L("removeAdmin")}>${esc(t("removeAdmin"))}</button>`
-      : `<button class="btn sm" type="button" data-setrole="${esc(p.id)}" data-r="admin"${L("makeAdmin")}>${esc(t("makeAdmin"))}</button>`;
-    if (p.role === "member" || isOwner()) h += `<button class="btn sm quiet danger" type="button" data-setrole="${esc(p.id)}" data-r="blocked"${L("removeAccess")}>${esc(t("removeAccess"))}</button>`;
+      ? `<button class="btn sm" type="button" data-setrole="${esc(p.id)}" data-r="member">${esc(t("removeAdmin"))}</button>`
+      : `<button class="btn sm" type="button" data-setrole="${esc(p.id)}" data-r="admin">${esc(t("makeAdmin"))}</button>`;
+    if (p.role === "member" || isOwner()) h += `<button class="btn sm quiet danger" type="button" data-setrole="${esc(p.id)}" data-r="blocked">${esc(t("removeAccess"))}</button>`;
     return h;
   };
   const empty = tab === "waiting" ? t("noneWaiting") : tab === "removed" ? t("noneRemoved") : "";
   dlg.innerHTML = `<div class="dlg">
-    <div class="dlg-head"><div class="titles"><h2 id="dlgTitle">${esc(t("members"))}</h2></div>
+    <div class="dlg-head"><div class="titles"><h2>${esc(t("members"))}</h2></div>
       <button class="icon-btn" type="button" data-close aria-label="${esc(t("close"))}">×</button></div>
     <div class="tabs" role="tablist">
       <button type="button" role="tab" data-mtab="waiting" aria-selected="${tab === "waiting"}">${esc(t("waiting"))}<span class="badge${waiting.length ? " hot" : ""}">${waiting.length}</span></button>
@@ -1263,6 +1017,7 @@ document.addEventListener("click", (ev) => {
   const D = b.dataset;
   if (D.lang) { st.lang = D.lang; store.set("gats-lang", st.lang); refresh(true); if (dlg.open && st.dlgMode === "form") { /* keep form as-is */ } return; }
   if (D.menu !== undefined) { st.menuOpen = !st.menuOpen; render(); return; }
+  if (D.google !== undefined) { signInGoogle(); return; }
   if (D.resend !== undefined) { st.auth.step = "start"; sendCode(); return; }
   if (D.authBack !== undefined) { st.auth.step = "start"; st.auth.error = ""; render(); return; }
   if (D.checkAgain !== undefined) { fetchMe().then((me) => { if (me && me.role !== "pending") route(st.session); else toast(t("stillPending")); }).catch(() => toast(t("writeFail"))); return; }
@@ -1273,13 +1028,8 @@ document.addEventListener("click", (ev) => {
   if (D.mtab) { st.membersTab = D.mtab; renderMembers(); return; }
   if (D.setrole) { setRole(D.setrole, D.r, b); return; }
   if (D.plan !== undefined) { openForm(null, st.sel >= todayS() ? st.sel : todayS()); return; }
-  if (D.goto) { location.hash = D.goto; return; }
-  if (D.stat) { openStat(D.stat); return; }
-  if (D.pg) { st.grid[D.pg].page += Number(D.d); render(); return; }
-  if (D.sort) { const g = st.grid.ev; if (g.sort === D.sort) g.dir *= -1; else { g.sort = D.sort; g.dir = DESC_FIRST.includes(D.sort) ? -1 : 1; } g.page = 0; render(); return; }
-  if (D.attKind) { st.grid.att.kind = D.attKind; st.grid.att.page = 0; render(); return; }
-  if (D.gridClear) { const g = st.grid[D.gridClear]; g.q = ""; g.page = 0; if (D.gridClear === "att") g.kind = "all"; else { g.status = "all"; g.when = "upcoming"; } render(); return; }
-  if (D.open) { openDetail(D.open); if (D.goTab) { st.tab = D.goTab; openDetail(D.open); } return; }
+  if (D.open) { openDetail(D.open); return; }
+  if (D.openvol) { openDetail(D.openvol); st.tab = "vol"; openDetail(D.openvol); return; }
   if (D.new !== undefined) { openForm(null, D.new || todayS(), D.prefill); return; }
   if (D.edit) { openForm(D.edit, null, null, D.focusSlots !== undefined); return; }
   if (D.del) { st.confirmDel = true; openDetail(D.del); return; }
@@ -1304,7 +1054,6 @@ document.addEventListener("click", (ev) => {
 });
 document.addEventListener("change", (ev) => {
   const el = ev.target;
-  if (el.dataset.gridSel) { const g = st.grid.ev, f = el.dataset.gridSel; if (f === "sort") { g.sort = el.value; g.dir = DESC_FIRST.includes(el.value) ? -1 : 1; } else g[f] = el.value; g.page = 0; render(); return; }
   if (el.dataset.tick) tickTask(el.dataset.tick, el.checked);
 });
 document.addEventListener("submit", (ev) => {
@@ -1317,36 +1066,22 @@ document.addEventListener("submit", (ev) => {
 });
 document.addEventListener("input", (ev) => {
   const el = ev.target;
-  if (el.dataset.gridQ) { const g = st.grid[el.dataset.gridQ]; g.q = el.value; g.page = 0; if (!ev.isComposing) render(); return; }
   if (el.dataset.sname !== undefined) { st.form.slots[Number(el.dataset.sname)].name = el.value; return; }
   if (el.dataset.sneed !== undefined) { st.form.slots[Number(el.dataset.sneed)].need = Number(el.value) || 1; return; }
   if (el.id === "guestN" && st.openId) setGuests(st.openId, Math.max(0, Math.min(20, Number(el.value) || 0)));
 });
-document.addEventListener("compositionend", (ev) => { if (ev.target.dataset?.gridQ) render(); });
 document.addEventListener("keydown", (ev) => { if (ev.key === "Escape" && st.menuOpen) { st.menuOpen = false; render(); } });
-// The browser can deliver "close" late; if something was reopened meanwhile, keep its state.
-dlg.addEventListener("close", () => { if (dlg.open) return; st.openId = null; st.form = null; st.confirmDel = false; st.dlgMode = null; });
+dlg.addEventListener("close", () => { st.openId = null; st.form = null; st.confirmDel = false; st.dlgMode = null; });
 dlg.addEventListener("click", (ev) => { if (ev.target === dlg) dlg.close(); });
 window.addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); st.installEvt = e; if (st.screen === "app") render(); });
 window.addEventListener("appinstalled", () => { st.installEvt = null; render(); });
 window.addEventListener("online", () => { if (st.screen === "app") loadAll(); });
-window.addEventListener("hashchange", () => {
-  const m = /^#(dashboard|events)$/.exec(location.hash); if (!m) return;
-  st.view = m[1];
-  if (st.screen === "app") { if (dlg.open) dlg.close(); render(); window.scrollTo(0, 0); }
-});
 document.addEventListener("visibilitychange", () => { if (!document.hidden && st.screen === "app") scheduleReload(); });
 
 let tt;
-// Shown as a "popover" where supported, so it sits above an open dialog instead of behind its dimmed backdrop.
-const popOn = (el, on) => { if (!el.showPopover) return; try { if (el.matches(":popover-open")) el.hidePopover(); if (on) el.showPopover(); } catch (e) {} };
-function toast(m) {
-  const el = $("#toast"); el.textContent = m; popOn(el, true); el.classList.add("show");
-  clearTimeout(tt); tt = setTimeout(() => { el.classList.remove("show"); popOn(el, false); }, 3400);
-}
+function toast(m) { const el = $("#toast"); el.textContent = m; el.classList.add("show"); clearTimeout(tt); tt = setTimeout(() => el.classList.remove("show"), 3400); }
 
 /* ================= boot ================= */
-takeUrlError();
 render();
 if (sb) {
   let last = null;

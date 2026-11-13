@@ -1,6 +1,6 @@
 // GATS Events service worker: makes the app installable and lets it open offline.
 // Bump VERSION whenever you change the app files so phones pick up the update.
-const VERSION = "gats-v9";
+const VERSION = "gats-v2";
 const SHELL = [
   "/", "/index.html", "/styles.css", "/app.js", "/config.js", "/manifest.webmanifest",
   "/icons/icon-192.png", "/icons/icon-512.png", "/icons/apple-touch-icon.png", "/icons/favicon-64.png"
