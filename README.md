@@ -1,156 +1,110 @@
-# GATS Events
+# GATSapp
 
-The event planner for the Greater Atlanta Tamil Sangam. Members sign in, wait for an admin to approve them, and then see upcoming events, RSVP, and sign up to volunteer. Admins plan events, manage checklists, and approve new members. It installs on phones and computers like a regular app.
+The event app for the Greater Atlanta Tamil Sangam. Members sign in, wait for an admin to approve them, and then find volunteer jobs, RSVP, and see what's coming up. Admins and the owner get an organizer view with AI planning help and a private team chat. It installs on phones like a native app.
 
-It runs on two free services: **Supabase** (sign-in and database) and **Vercel** (hosting). There is no build step and nothing to compile.
+It runs on **Supabase** (sign-in, database, AI helper) and **Vercel** (hosting). There's no build step.
+
+## Already running the earlier version? Upgrade in 4 steps
+
+Your existing data, accounts, and `config.js` all stay as they are.
+
+1. **Upload the new files to GitHub.** In your repository, choose **Add file → Upload files** and drag in everything from this folder **except `config.js`**, so your keys aren't overwritten. Include the `supabase` folder. Click **Commit changes**. Vercel updates the site within a minute.
+2. **Turn on the team chat.** In Supabase, open **SQL Editor → New query**, paste the whole of `supabase/upgrade-v2.sql`, and click **Run**. It's safe to run more than once.
+3. **Set up the AI helper** (see "AI planning tools" below, about 10 minutes).
+4. **Refresh phones.** Close and reopen the app on your phone. If it still looks old, open the site in Safari or Chrome once, then reopen the installed app.
 
 ## What's in this folder
 
 | File | What it is |
 |---|---|
 | `index.html`, `styles.css`, `app.js` | The app itself |
-| `config.js` | Your Supabase connection details (you fill this in) |
-| `supabase/schema.sql` | Creates the database, the approval system and all permission rules |
+| `config.js` | Your Supabase connection details (you fill this in once) |
+| `supabase/schema.sql` | Creates the database and permission rules (first-time setup) |
+| `supabase/upgrade-v2.sql` | Adds the admin team chat |
+| `supabase/functions/ai-assist/index.ts` | The AI helper that runs on Supabase's server |
 | `manifest.webmanifest`, `sw.js`, `icons/` | Make the app installable and let it open offline |
 | `vercel.json` | Hosting settings |
 
-## Setup (about 45 minutes, once)
+## Who sees what
 
-Supabase occasionally renames menu items. If a label below doesn't match exactly, look for the closest equivalent.
-
-### 1. Create the Supabase project
-
-1. Go to [supabase.com](https://supabase.com), sign up, and click **New project**.
-2. Name it `gats-events`, pick a strong database password (save it somewhere safe), and choose the **East US** region.
-3. Wait a minute or two for it to finish setting up.
-
-### 2. Create the database
-
-1. In your project, open **SQL Editor** and click **New query**.
-2. Open `supabase/schema.sql` from this folder, copy everything, paste it in, and click **Run**.
-3. You should see "Success. No rows returned." This also adds the starter Tamil festival dates, which are estimates; confirm them against a panchangam and fix them in the app.
-
-### 3. Connect the app to Supabase
-
-1. In Supabase, go to **Project Settings → API** (or **API Keys**).
-2. Copy the **Project URL** and the **anon** key (newer projects call it the **publishable** key).
-3. Open `config.js` and paste them in place of the placeholders:
-
-```js
-window.GATS_CONFIG = {
-  supabaseUrl: "https://abcdefgh.supabase.co",
-  supabaseAnonKey: "eyJhbGciOi...",
-  contactEmail: "events@yourgats.org"   // optional, shown to people who are declined
-};
-```
-
-Both values are meant to be public. The permission rules in the database are what protect the data. **Never** put the `service_role` / secret key in this file.
-
-### 4. Put the app online with Vercel
-
-1. Create a free account at [github.com](https://github.com) and make a new repository called `gats-events`.
-2. Upload every file and folder from this folder into it (**Add file → Upload files**, then drag them in).
-3. Create a free account at [vercel.com](https://vercel.com) using your GitHub login.
-4. Click **Add New → Project**, choose the `gats-events` repository, leave **Framework Preset** as **Other**, leave the build command empty, and click **Deploy**.
-5. Vercel gives you an address like `https://gats-events.vercel.app`. That's your app.
-
-From now on, any change you upload to GitHub goes live automatically within a minute.
-
-### 5. Tell Supabase where the app lives
-
-1. In Supabase, go to **Authentication → URL Configuration**.
-2. Set **Site URL** to your Vercel address, e.g. `https://gats-events.vercel.app`.
-3. Under **Redirect URLs**, add the same address followed by `/**`, e.g. `https://gats-events.vercel.app/**`.
-
-### 6. Set up the sign-in email
-
-The app emails people a 6-digit code, which works reliably inside the installed phone app (tapping a link in an email can open the wrong browser on iPhones).
-
-1. Go to **Authentication → Emails → Templates** (or **Email Templates**) and open **Magic Link**.
-2. Replace the message body with:
-
-```html
-<h2>Your GATS Events sign-in code</h2>
-<p>Enter this code in the app:</p>
-<p style="font-size:28px;font-weight:bold;letter-spacing:4px">{{ .Token }}</p>
-<p>Or <a href="{{ .ConfirmationURL }}">tap here to sign in</a> on this device.</p>
-<p>If you didn't ask for this, you can ignore this email.</p>
-```
-
-3. Do the same for the **Confirm signup** template, so brand-new members also get a code.
-4. Set the subject lines to something like `Your GATS Events sign-in code`.
-
-**Important before inviting everyone:** Supabase's built-in email sender only allows a handful of emails per hour, which is fine for testing but not for a whole community. Set up a free email service before launch:
-
-1. Create a free account at [resend.com](https://resend.com) (or Brevo, Postmark, etc.) and verify a domain or sending address.
-2. In Supabase, go to **Authentication → Emails → SMTP Settings**, enable custom SMTP, and paste in the details the email service gives you.
-
-### 7. Sign in first, before sharing the link
-
-**The first person to sign in automatically becomes the owner.** Do this yourself right after deploying, before you share the address with anyone.
-
-1. Open your Vercel address and sign in.
-2. You should go straight to the calendar, with **Members** and **Plan an event** buttons visible.
-3. To double-check, run this in the Supabase SQL Editor:
-
-```sql
-select full_name, role from public.profiles order by created_at;
-```
-
-If someone else got there first, make yourself owner and demote them:
-
-```sql
-update public.profiles set role = 'member' where role = 'owner';
-update public.profiles set role = 'owner' where id = (select id from auth.users where email = 'you@example.com');
-```
-
-### 8. Make your crew admins
-
-Ask your crew to sign in. They'll appear under **Members → Waiting**. Approve them, then go to the **Members** tab and click **Make admin** next to each one. Only the owner can make or remove admins.
-
-## Sharing it with members
-
-Send the link in your WhatsApp group with these instructions:
-
-- **iPhone:** open the link in **Safari**, tap the **Share** button, then **Add to Home Screen**.
-- **Android:** open the link in **Chrome** and tap **Install app** (or menu ⋮ → **Install app** / **Add to Home screen**).
-- **Computer:** open the link in **Chrome** or **Edge** and click the install icon at the right end of the address bar.
-
-After signing up, members see a "waiting for approval" screen. It switches to the calendar automatically once an admin approves them.
-
-## Who can do what
+Everyone uses the same site. What you see depends on your role.
 
 | | Waiting / Removed | Member | Admin | Owner |
 |---|:-:|:-:|:-:|:-:|
-| See published events | | ✓ | ✓ | ✓ |
-| RSVP and volunteer | | ✓ | ✓ | ✓ |
-| Dashboard (opens first: stats and what needs attention) | | | ✓ | ✓ |
-| See drafts and checklists | | | ✓ | ✓ |
-| Create, edit, delete events | | | ✓ | ✓ |
-| Approve, decline, remove members | | | ✓ | ✓ |
+| Home with volunteer board, Events, Me | | ✓ | ✓ | ✓ |
+| RSVP and sign up for volunteer jobs | | ✓ | ✓ | ✓ |
+| Organizer view, drafts, checklists | | | ✓ | ✓ |
+| AI planning tools | | | ✓ | ✓ |
+| Team chat | | | ✓ | ✓ |
+| Approve, decline, remove members (People tab) | | | ✓ | ✓ |
 | Make or remove admins | | | | ✓ |
 
-These rules are enforced by the database itself, so they hold even if someone tampers with the app. Members also can't see each other's email addresses; only admins can, for approvals.
+The database enforces these rules itself, so they hold even if someone tampers with the app. Members can't see each other's email addresses or the team chat.
+
+## AI planning tools
+
+Admins and the owner can:
+- **Draft an event:** describe it in a sentence ("Pongal on Jan 16, 11 to 3 at the community hall, with cooking and kolam") and the form fills in, including volunteer roles.
+- **Suggest a checklist:** in an event's Checklist tab, add a planning to-do list in one tap.
+- **Write an announcement:** get a WhatsApp-ready message, then copy it, share it to WhatsApp, or post it in the team chat.
+
+AI suggestions are a starting point. Always check the details before publishing or sharing.
+
+**Setup:**
+1. **Get a Claude API key.** Create an account at [console.anthropic.com](https://console.anthropic.com), add a payment method under **Billing**, then create a key under **API Keys**. Copy it (it starts with `sk-ant-`). The AI is pay-per-use; you can set a monthly spending limit in the Console so costs can't run away. See Anthropic's pricing page for current rates.
+2. **Store the key in Supabase, not in the app.** In Supabase, go to **Edge Functions → Secrets** (or **Project Settings → Edge Functions**), add a secret named `ANTHROPIC_API_KEY`, paste the key, and save. Never put this key in `config.js` or GitHub.
+3. **Deploy the helper.** In Supabase, go to **Edge Functions → Deploy a new function → Via Editor**. Name it exactly `ai-assist`, replace the sample code with the contents of `supabase/functions/ai-assist/index.ts`, and click **Deploy**. Leave **Verify JWT** turned on.
+4. **Test it.** Sign in as an admin, go to **Home → Organize**, describe an event in **Plan with AI**, and tap **Draft event**.
+
+If the AI shows "AI isn't set up yet," the secret is missing or misnamed. "Only admins can use the AI tools" means you're signed in as a member.
+
+## Team chat
+
+Admins and the owner get a **Chat** tab for planning conversations. Members keep using the GATS WhatsApp group. If the Chat tab says the chat isn't set up, run `supabase/upgrade-v2.sql` (upgrade step 2).
+
+## First-time setup (new project only)
+
+Skip this if your site is already live.
+
+1. **Create a Supabase project** at [supabase.com](https://supabase.com) (East US region).
+2. **Create the database:** in **SQL Editor → New query**, paste and run `supabase/schema.sql`, then do the same with `supabase/upgrade-v2.sql`.
+3. **Connect the app:** from **Project Settings → API Keys**, copy the Project URL and the **anon** key (the one starting with `eyJ`, on the **Legacy API keys** tab) into `config.js`. Never use the `service_role` or secret key there.
+4. **Put it online:** upload this folder's contents to a GitHub repository (with `index.html` at the top level, not inside a folder), then import it in [vercel.com](https://vercel.com) with **Framework Preset: Other** and deploy.
+5. **Tell Supabase the address:** in **Authentication → URL Configuration**, set **Site URL** to your Vercel address (the short one from **Vercel → Settings → Domains**) and add the same address followed by `/**` under **Redirect URLs**.
+6. **Sign-in emails:** edit the **Magic Link** and **Confirm signup** templates to include the code `{{ .Token }}`. Before inviting everyone, set up a custom email sender (for example Resend) under **Authentication → Emails → SMTP Settings**, because Supabase's built-in sender only allows a few emails an hour.
+7. **Google sign-in (optional):** create an OAuth web client in Google Cloud with the redirect URI `https://YOUR-PROJECT.supabase.co/auth/v1/callback`, publish the consent screen, and paste the client ID and secret into **Authentication → Providers → Google**.
+8. **Sign in first:** the first person to sign in becomes the owner. Do it before sharing the link.
+9. **Set up the AI helper** as described above.
+
+## Changing the web address
+
+The name in the app is GATSapp. The web address comes from your Vercel project name. To change it, go to **Vercel → your project → Settings → General**, rename the project (for example to `gatsapp`), and check **Settings → Domains** for the new address. Then update the **Site URL** and **Redirect URLs** in Supabase (setup step 5), and the redirect settings in Google Cloud if you use Google sign-in. Share the new link with members.
+
+## Sharing it with members
+
+- **iPhone:** open the link in **Safari**, tap **Share**, then **Add to Home Screen**.
+- **Android:** open the link in **Chrome** and tap **Install app**.
+- **Computer:** open the link in Chrome or Edge and click the install icon in the address bar.
 
 ## Making changes later
 
-- Edit files on GitHub (or upload new versions). Vercel redeploys automatically.
-- **After changing any app file, open `sw.js` and bump `VERSION`** (e.g. `gats-v1` → `gats-v2`). This makes installed copies on phones pick up the update.
-- To use your own address (e.g. `events.yourgats.org`), add it under **Vercel → Project → Settings → Domains**, then update the Site URL and Redirect URLs in step 5.
+- Edit files on GitHub or upload new versions; Vercel redeploys automatically.
+- **After changing any app file, bump `VERSION` in `sw.js`** (for example `gats-v3` to `gats-v4`) so installed phones pick up the update.
 
 ## Good to know
 
-- **Free-tier pause:** free Supabase projects pause after about a week with no activity. If the app ever says it can't load, log in to Supabase and click **Restore project**. Regular use keeps it awake; upgrading to Supabase Pro removes the pause if this becomes a nuisance.
-- **Offline:** the app saves the latest events on each device, so members can still view the calendar without a connection. RSVPs and edits need a connection.
-- **Backups:** to keep your own copy, open **Table Editor** in Supabase, choose `events`, and use **Export to CSV**.
-- **Tamil text:** the Tamil translations were written by an AI and should be checked by a fluent member before launch. All wording lives near the top of `app.js` under `ta:`.
-- **New-member alerts:** admins see a banner and a badge on the Members button when people are waiting. The app doesn't send email or push notifications about this yet.
+- **Free-tier pause:** free Supabase projects pause after about a week with no activity. If the app won't load, log in to Supabase and click **Restore project**.
+- **Offline:** the app keeps the latest events on each phone, so members can still read the calendar without a connection.
+- **Tamil text:** the Tamil translations were written by AI and should be checked by a fluent member. All wording is near the top of `app.js`.
 
 ## Troubleshooting
 
 | Problem | Fix |
 |---|---|
-| "Almost ready" screen | `config.js` still has the placeholders. Redo step 3. |
-| Sign-in code email never arrives | Check spam. If several people signed in recently, you've hit the built-in email limit; set up custom SMTP (step 6). |
-| Signed in but stuck on "waiting for approval" | An admin needs to approve you. If you're the owner, see step 7. |
-| Phone still shows the old version | Bump `VERSION` in `sw.js`, redeploy, then close and reopen the app. |
+| "Almost ready" screen | `config.js` still has placeholders, or your browser has an old copy. Hard refresh, or open it in a private window. |
+| Sign-in code email doesn't arrive | Check spam. If many people signed in recently, you've hit the built-in email limit; set up a custom sender. |
+| "Email rate limit exceeded" | Same as above: wait an hour, use Google sign-in, or set up a custom sender. |
+| Email link opens an old version | Supabase's Site URL must be your short Vercel address, not a long deployment address. |
+| AI says it isn't set up | Add the `ANTHROPIC_API_KEY` secret and deploy the `ai-assist` function. |
+| Chat tab says it isn't set up | Run `supabase/upgrade-v2.sql`. |
+| Phone still shows the old design | Bump `VERSION` in `sw.js`, redeploy, then close and reopen the app. |

@@ -3,26 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>GATS Events</title>
+<title>GATSapp</title>
 <meta name="description" content="Events, RSVPs and volunteering for the Greater Atlanta Tamil Sangam.">
-<meta name="theme-color" content="#A3174F">
+<meta name="theme-color" content="#EEE8EB" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F0B0E" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="GATS Events">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="GATSapp">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" type="image/png" href="/icons/favicon-64.png">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@500;700;800&family=Mukta+Malar:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 <div id="app"><p class="boot">Loading…</p></div>
-<noscript><p class="boot">GATS Events needs JavaScript turned on.</p></noscript>
-<dialog id="dlg" aria-labelledby="dlgTitle"></dialog>
-<div class="toast" id="toast" role="status" aria-live="polite" popover="manual"></div>
+<dialog id="dlg"></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script src="/config.js"></script>
 <script src="/app.js"></script>
